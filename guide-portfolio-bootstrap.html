@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guide : crée ton portfolio avec Bootstrap, étape par étape</title>
+<style>
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:#1f2937;background:#f4f7f7;line-height:1.65}
+  a{color:#0f766e}
+  :focus-visible{outline:3px solid #f59e0b;outline-offset:2px}
+  .topbar{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid #d9e2e2;display:flex;gap:.25rem;overflow-x:auto;padding:.5rem 1rem;white-space:nowrap}
+  .topbar a{text-decoration:none;color:#374151;padding:.3rem .7rem;border-radius:999px;font-size:.92rem}
+  .topbar a:hover{background:#e6f2f0;color:#0f766e}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 1rem 4rem}
+  header.intro{padding:2.5rem 0 1rem}
+  header.intro h1{font-size:clamp(1.9rem,4.5vw,2.8rem);line-height:1.15;margin:0 0 .75rem}
+  header.intro p{max-width:68ch;font-size:1.08rem;color:#374151}
+  .box{background:#fff;border:1px solid #d9e2e2;border-radius:10px;padding:1.25rem 1.5rem;margin:1.25rem 0}
+  .etape{background:#fff;border:1px solid #d9e2e2;border-radius:10px;padding:1.5rem;margin:1.75rem 0}
+  .etape h2{display:flex;align-items:center;gap:.75rem;margin:0 0 .5rem;font-size:1.5rem}
+  .etape h3{margin:1.6rem 0 .5rem;font-size:1.1rem}
+  .num{flex:none;width:2.3rem;height:2.3rem;border-radius:50%;background:#0f766e;color:#fff;display:grid;place-items:center;font-size:1rem}
+  .objectif{background:#e6f2f0;border-radius:8px;padding:.7rem 1rem;margin:.75rem 0 1rem}
+  p,li{max-width:75ch}
+  code{background:#edf2f2;padding:.05em .35em;border-radius:4px;font-size:.92em;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+  .codebox{position:relative;margin:.75rem 0}
+  pre.code{margin:0;background:#10201f;color:#e6f2f0;padding:1rem;border-radius:8px;overflow-x:auto;font-size:.88rem;line-height:1.55}
+  pre.code code{background:none;padding:0;color:inherit;font-size:inherit}
+  .copy,.btn-mini{font:inherit;font-size:.8rem;border:1px solid #9fb5b3;background:#fff;color:#1f2937;padding:.2rem .6rem;border-radius:6px;cursor:pointer}
+  .copy:hover,.btn-mini:hover{background:#e6f2f0}
+  .codebox .copy{position:absolute;top:.5rem;right:.5rem}
+  dl.expl{display:grid;grid-template-columns:minmax(0,18rem) 1fr;gap:.4rem 1rem;margin:.5rem 0}
+  dl.expl dt{margin:0}
+  dl.expl dd{margin:0 0 .4rem}
+  @media (max-width:760px){dl.expl{grid-template-columns:1fr}}
+  .demo{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1rem 0}
+  @media (max-width:900px){.demo{grid-template-columns:1fr}}
+  .pane{min-width:0;border:1px solid #d9e2e2;border-radius:8px;overflow:hidden;background:#fff}
+  .bar{display:flex;justify-content:space-between;align-items:center;gap:.5rem;background:#eef3f3;padding:.4rem .7rem;font-size:.85rem;font-weight:600}
+  .bar span{display:flex;gap:.35rem}
+  .demo textarea{display:block;width:100%;border:0;resize:vertical;padding:.8rem;font:13px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:#10201f;color:#e6f2f0;tab-size:2}
+  .framewrap{background:#dde5e5;display:flex;justify-content:center}
+  .framewrap iframe{border:0;background:#fff;width:100%;max-width:100%;display:block}
+  .defi{border-left:4px solid #0f766e;background:#f7fbfa;padding:.75rem 1rem;margin:.9rem 0;border-radius:0 8px 8px 0}
+  .defi h4{margin:0 0 .3rem;font-size:1rem}
+  .niveau{font-size:.78rem;font-weight:600;background:#0f766e;color:#fff;border-radius:999px;padding:.05rem .55rem;margin-left:.4rem}
+  .niveau.moyen{background:#b45309}
+  .niveau.dur{background:#9f1239}
+  details{margin:.4rem 0}
+  summary{cursor:pointer;font-weight:600;color:#0f766e}
+  table{border-collapse:collapse;width:100%;font-size:.93rem}
+  th,td{border:1px solid #d9e2e2;padding:.45rem .6rem;text-align:left;vertical-align:top}
+  th{background:#eef3f3}
+  .note{border-left:4px solid #f59e0b;background:#fffbeb;padding:.6rem 1rem;border-radius:0 8px 8px 0;margin:.9rem 0}
+  .btn-main{font:inherit;font-weight:600;background:#0f766e;color:#fff;border:0;border-radius:8px;padding:.6rem 1.1rem;cursor:pointer}
+  .btn-main:hover{background:#0b5f59}
+  footer.fin{text-align:center;color:#4b5563;padding:2rem 0}
+</style>
+</head>
+<body>
+
+<nav class="topbar" aria-label="Étapes du guide">
+  <a href="#e0">0 · Préparer</a>
+  <a href="#e1">1 · Squelette</a>
+  <a href="#e2">2 · Menu</a>
+  <a href="#e3">3 · Accueil</a>
+  <a href="#e4">4 · À propos</a>
+  <a href="#e5">5 · Compétences</a>
+  <a href="#e6">6 · Projets</a>
+  <a href="#e7">7 · Contact</a>
+  <a href="#e8">8 · Pied de page</a>
+  <a href="#e9">9 · Assemblage</a>
+  <a href="#aide">Aide-mémoire</a>
+  <a href="#erreurs">Erreurs</a>
+</nav>
+
+<div class="wrap">
+
+<header class="intro">
+  <h1>Crée ton portfolio avec Bootstrap, étape par étape</h1>
+  <p>Bismillah, on commence. À la fin de ce guide, tu auras un vrai site portfolio qui s'adapte au téléphone et à l'ordinateur. Tu ne sais pas encore tout ? Matkhafch, on repart de zéro.</p>
+  <div class="box">
+    <strong>Comment utiliser ce guide</strong>
+    <ol>
+      <li>Chaque étape construit <strong>une partie</strong> du même site : le portfolio de Yacine Benali, étudiant à Alger (le fil rouge).</li>
+      <li>Le code de chaque partie est <strong>modifiable</strong> : change-le et le résultat à droite se met à jour.</li>
+      <li>À la fin de chaque étape, des <strong>défis</strong> du plus facile au plus dur. Cherche d'abord, puis clique sur « Voir la correction ».</li>
+      <li>À l'étape 9, toutes les parties s'assemblent en un fichier <code>index.html</code> que tu peux télécharger.</li>
+    </ol>
+    <p><strong>Important :</strong> il faut une connexion internet, car Bootstrap est chargé depuis un CDN (un serveur qui l'héberge pour nous).</p>
+  </div>
+</header>
+
+<!-- ===================== ÉTAPE 0 ===================== -->
+<section class="etape" id="e0">
+  <h2><span class="num">0</span> Préparer ton espace de travail</h2>
+  <div class="objectif"><strong>Objectif :</strong> avoir un dossier, un fichier <code>index.html</code> et savoir l'afficher dans le navigateur.</div>
+
+  <ol>
+    <li>Installe <strong>Visual Studio Code</strong> (éditeur gratuit) et un navigateur (Chrome ou Firefox).</li>
+    <li>Crée un dossier <code>portfolio</code> sur ton Bureau.</li>
+    <li>Dans VS Code : <em>Fichier → Ouvrir un dossier</em>, choisis <code>portfolio</code>, puis crée un nouveau fichier nommé <code>index.html</code>.</li>
+    <li>Pour voir ton site : double-clique sur <code>index.html</code> dans l'explorateur de fichiers. Il s'ouvre dans le navigateur.</li>
+    <li>Après chaque modification : <strong>Ctrl + S</strong> dans VS Code pour sauvegarder, puis <strong>F5</strong> dans le navigateur pour rafraîchir.</li>
+  </ol>
+  <div class="note"><strong>Astuce :</strong> dans un fichier HTML vide de VS Code, tape <code>!</code> puis la touche <kbd>Tab</kbd>. VS Code écrit tout seul le squelette d'une page.</div>
+
+  <h3>Défi</h3>
+  <div class="defi">
+    <h4>Défi 0 : ta première page <span class="niveau">Facile</span></h4>
+    <p>Dans <code>index.html</code>, écris une page qui affiche « Salam, je suis [ton prénom] ! » en grand titre, puis ouvre-la dans le navigateur.</p>
+    <details>
+      <summary>Voir la correction</summary>
+      <script type="text/plain" data-kind="code">
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Test</title>
+</head>
+<body>
+  <h1>Salam, je suis Yacine !</h1>
+</body>
+</html>
+      </script>
+    </details>
+  </div>
+</section>
+
+<!-- ===================== ÉTAPE 1 ===================== -->
+<section class="etape" id="e1">
+  <h2><span class="num">1</span> Le squelette HTML avec Bootstrap</h2>
+  <div class="objectif"><strong>Objectif :</strong> une page vide mais prête : Bootstrap est chargé et fonctionne.</div>
+
+  <p><strong>Pourquoi Bootstrap ?</strong> Sans lui, il faudrait écrire des centaines de lignes de CSS pour avoir un menu, des cartes ou une mise en page qui s'adapte au mobile. Bootstrap fournit tout cela sous forme de <strong>classes</strong> prêtes à l'emploi : tu écris <code>class="btn btn-primary"</code> et tu obtiens un joli bouton.</p>
+
+  <h3>Le code</h3>
+  <div class="demo" data-src="frag-skeleton" data-mode="full" data-h="360"></div>
+
+  <h3>Explication ligne par ligne</h3>
+  <dl class="expl">
+    <dt><code>&lt;!DOCTYPE html&gt;</code></dt><dd>Dit au navigateur : « c'est une page HTML moderne ».</dd>
+    <dt><code>&lt;html lang="fr"&gt;</code></dt><dd>La langue de la page. Utile pour la traduction automatique et les lecteurs d'écran.</dd>
+    <dt><code>&lt;meta charset="UTF-8"&gt;</code></dt><dd>Permet d'afficher correctement les accents (é, è, à) et même l'arabe.</dd>
+    <dt><code>&lt;meta name="viewport" ...&gt;</code></dt><dd><strong>Indispensable.</strong> Sans elle, sur téléphone la page s'affiche toute petite, comme un site d'ordinateur rétréci.</dd>
+    <dt><code>&lt;title&gt;</code></dt><dd>Le texte de l'onglet du navigateur.</dd>
+    <dt><code>&lt;link ... bootstrap.min.css&gt;</code></dt><dd>Charge tous les styles de Bootstrap depuis internet. <code>@5.3.3</code> fixe la version pour que ton site ne change pas tout seul.</dd>
+    <dt><code>&lt;link ... bootstrap-icons&gt;</code></dt><dd>Charge les icônes (classes <code>bi bi-...</code>).</dd>
+    <dt><code>class="container py-5"</code></dt><dd><code>container</code> centre le contenu et limite sa largeur. <code>py-5</code> ajoute de l'espace en haut et en bas (p = padding, y = vertical, 5 = grand).</dd>
+    <dt><code>text-primary</code>, <code>lead</code></dt><dd>Couleur principale pour le titre, et texte d'introduction un peu plus grand.</dd>
+    <dt><code>btn btn-primary</code></dt><dd>Un bouton Bootstrap de couleur principale. Il faut toujours les deux classes : <code>btn</code> puis la variante.</dd>
+    <dt><code>&lt;script ... bundle.min.js&gt;</code></dt><dd>Les comportements de Bootstrap (menu hamburger, etc.). On le met <strong>à la fin du body</strong> pour que la page s'affiche d'abord.</dd>
+  </dl>
+
+  <h3>Défis</h3>
+  <div class="defi">
+    <h4>Défi 1 : personnaliser <span class="niveau">Facile</span></h4>
+    <p>Change le <code>&lt;title&gt;</code> en « Portfolio de [ton prénom] » et le titre <code>h1</code> en « Salam, je suis [ton prénom] ! ».</p>
+    <details><summary>Voir la correction</summary>
+      <script type="text/plain" data-kind="code">
+<title>Portfolio de Yacine</title>
+...
+<h1 class="text-primary">Salam, je suis Yacine !</h1>
+      </script>
+    </details>
+  </div>
+  <div class="defi">
+    <h4>Défi 2 : un gros bouton vert <span class="niveau moyen">Moyen</span></h4>
+    <p>Transforme le bouton pour qu'il soit vert et grand (cherche dans la doc : <em>Bootstrap buttons</em>).</p>
+    <details><summary>Voir la correction</summary>
+      <script type="text/plain" data-kind="code">
+<button class="btn btn-success btn-lg">Mon premier bouton</button>
+      </script>
+      <p><code>btn-success</code> = vert, <code>btn-lg</code> = grand.</p>
+    </details>
+  </div>
+  <div class="defi">
+    <h4>Défi 3 : bouton avec icône <span class="niveau dur">Plus dur</span></h4>
+    <p>Ajoute une icône cœur avant le texte du bouton (cherche <em>bi-heart-fill</em> dans les icônes Bootstrap).</p>
+    <details><summary>Voir la correction</summary>
+      <script type="text/plain" data-kind="code">
+<button class="btn btn-primary">
+  <i class="bi bi-heart-fill"></i> Mon premier bouton
+</button>
+      </script>
+    </details>
+  </div>
+</section>
+
+<!-- ===================== ÉTAPE 2 ===================== -->
+<section class="etape" id="e2">
+  <h2><span class="num">2</span> Le menu de navigation</h2>
+  <div class="objectif"><strong>Objectif :</strong> un menu en haut de page qui devient un bouton « hamburger » sur téléphone.</div>
+  <p>À partir d'ici, on ne montre que le contenu du <code>&lt;body&gt;</code>. Colle chaque partie dans ton <code>index.html</code>, entre <code>&lt;body&gt;</code> et le <code>&lt;script&gt;</code> de Bootstrap, <strong>l'une sous l'autre</strong>.</p>
+
+  <h3>Le code</h3>
+  <div class="demo" data-src="frag-nav" data-h="300"></div>
+  <p>Clique sur « Mobile » dans le résultat, puis sur le bouton hamburger.</p>
+
+  <h3>Explication ligne par ligne</h3>
+  <dl class="expl">
+    <dt><code>navbar navbar-expand-lg</code></dt><dd><code>navbar</code> = barre de menu. <code>expand-lg</code> = menu étalé sur grand écran, caché derrière le hamburger en dessous.</dd>
+    <dt><code>bg-white border-bottom</code></dt><dd>Fond blanc et un fin trait en bas.</dd>
+    <dt><code>fixed-top</code></dt><dd>Le menu reste collé en haut quand on descend dans la page.</dd>
+    <dt><code>container</code></dt><dd>Aligne le menu avec le reste du contenu.</dd>
+    <dt><code>navbar-brand</code></dt><dd>Ton nom ou le logo, à gauche.</dd>
+    <dt><code>navbar-toggler</code></dt><dd>Le bouton hamburger. Il reste caché sur grand écran.</dd>
+    <dt><code>data-bs-toggle="collapse"</code> + <code>data-bs-target="#menu"</code></dt><dd>Disent à Bootstrap : « au clic, ouvre/ferme l'élément qui a l'id <code>menu</code> ». Les deux noms doivent être <strong>identiques</strong>.</dd>
+    <dt><code>collapse navbar-collapse</code> + <code>id="menu"</code></dt><dd>La partie du menu qui se replie. Son <code>id</code> correspond au <code>data-bs-target</code>.</dd>
+    <dt><code>navbar-nav ms-auto</code></dt><dd>La liste des liens. <code>ms-auto</code> (margin-start auto) les pousse à droite.</dd>
+    <dt><code>nav-item</code> / <code>nav-link</code></dt><dd>Un élément de la liste et son lien.</dd>
+    <dt><code>href="#apropos"</code></dt><dd>Un lien vers une section de la même page : le <code>#</code> cherche l'élément qui a l'id <code>apropos</code>.</dd>
+  </dl>
+
+  <h3>Défis</h3>
+  <div class="defi">
+    <h4>Défi 1 : ton nom <span class="niveau">Facile</span></h4>
+    <p>Mets ton propre nom dans la marque du menu.</p>
+    <details><summary>Voir la correction</summary>
+      <script type="text/plain" data-kind="code">
+<a class="navbar-brand fw-bold" href="#accueil">Ton Nom</a>
+      </script>
+    </details>
+  </div>
+  <div class="defi">
+    <h4>Défi 2 : un lien de plus <span class="niveau moyen">Moyen</span></h4>
+    <p>Ajoute un lien « CV » à la fin du menu.</p>
+    <details><summary>Voir la correction</summary>
+      <script type="text/plain" data-kind="code">
+<li class="nav-item"><a class="nav-link" href="#cv">CV</a></li>
+      </script>
+      <p>À placer avec les autres <code>&lt;li&gt;</code>, à l'intérieur du <code>&lt;ul&gt;</code>. Le lien ne mènera nulle part tant qu'une section <code>id="cv"</code> n'existe pas.</p>
+    </details>
+  </div>
+  <div class="defi">
+    <h4>Défi 3 : menu sombre <span class="niveau dur">Plus dur</span></h4>
+    <p>Fais un menu à fond noir avec du texte clair (indice : la doc Bootstrap 5.3 parle de <code>data-bs-theme</code>).</p>
+    <details><summary>Voir la correction</summary>
+      <script type="text/plain" data-kind="code">
+<nav class="navbar navbar-expand-lg bg-dark border-bottom fixed-top" data-bs-theme="dark">
+      </script>
+      <p>On remplace <code>bg-white</code> par <code>bg-dark</code> et on ajoute <code>data-bs-theme="dark"</code> : Bootstrap adapte alors tout seul la couleur du texte.</p>
+    </details>
+  </div>
+</section>
+
+<!-- ===================== ÉTAPE 3 ===================== -->
+<section class="etape" id="e3">
+  <h2><span class="num">3</span> La section d'accueil (hero)</h2>
+  <div class="objectif"><strong>Objectif :</strong> un grand titre de présentation, deux boutons, et un cercle avec tes initiales (tu mettras ta photo plus tard).</div>
+
+  <h3>D'abord, comprendre la grille Bootstrap</h3>
+  <p>Bootstrap découpe chaque ligne en <strong>12 colonnes</strong>. Une <code>row</code> (ligne) contient des <code>col</code> (colonnes). Si tu écris <code>col-md-8</code> et <code>col-md-4</code>, tu obtiens 8 + 4 = 12 : deux colonnes côte à côte. Le <code>md</code> veut dire « à partir d'un écran moyen ». Sur téléphone, les colonnes s'empilent l'une sous l'autre, automatiquement.</p>
+
+  <h3>Le code</h3>
+  <div class="demo" data-src="frag-hero" data-h="380"></div>
+
+  <p>La classe <code>avatar</code> n'existe pas dans Bootstrap : c'est la nôtre. On la définit dans une balise <code>&lt;style&gt;</code> placée dans le <code>&lt;head&gt;</code>, après les deux <code>&lt;link&gt;</code> :</p>
+  <script type="text/plain" data-kind="code">
+<style>
+  .avatar {
+    width: 160px; height: 160px;
+    background: #0f766e; color: #fff;
+    font-size: 3.5rem; font-weight: 700;
+  }
+</style>
+  </script>
+  <p>(Dans les démos de ce guide, ce CSS est déjà ajouté pour toi.)</p>
+
+  <h3>Explication ligne par ligne</h3>
+  <dl class="expl">
+    <dt><code>id="accueil"</code></dt><dd>Le point d'arrivée du lien <code>#accueil</code> du menu.</dd>
+    <dt><code>bg-light pt-5</code></dt><dd>Fond gris très clair, et espace en haut (pt = padding-top) pour ne pas passer sous le menu fixe.</dd>
+    <dt><code>container py-5 mt-4</code></dt><dd>Contenu centré, avec de l'espace vertical (<code>py-5</code>) et une marge en haut (<code>mt-4</code>).</dd>
+    <dt><code>row align-items-center g-4</code></dt><dd>Une ligne. <code>align-items-center</code> centre les colonnes verticalement, <code>g-4</code> (gap) laisse de l'espace entre elles.</dd>
+    <dt><code>col-md-8</code> / <code>col-md-4</code></dt><dd>Texte sur 8 colonnes, cercle sur 4 (total 12).</dd>
+    <dt><code>display-4 fw-bold</code></dt><dd>Un très grand titre (<code>display-4</code>) en gras (<code>fw-bold</code> = font-weight bold).</dd>
+    <dt><code>lead text-secondary</code></dt><dd>Paragraphe d'intro plus grand, en gris.</dd>
+    <dt><code>btn btn-primary btn-lg me-2</code></dt><dd>Gros bouton plein. <code>me-2</code> (margin-end) met un petit espace à droite.</dd>
+    <dt><code>btn-outline-primary</code></dt><dd>Bouton « vide » avec seulement un contour.</dd>
+    <dt><code>rounded-circle d-inline-flex align-items-center justify-content-center</code></dt><dd>Forme ronde, et centrage des initiales à l'intérieur du cercle (on y reviendra avec « flex »).</dd>
+  </dl>
+
+  <h3>Défis</h3>
+  <div class="defi">
+    <h4>Défi 1 : changer les proportions <span class="niveau">Facile</span></h4>
+    <p>Donne 7 colonnes au texte et 5 au cercle.</p>
+    <details><summary>Voir la correction</summary>
+      <script type="text/plain" data-kind="code">
+<div class="col-md-7"> ... </div>
+<div class="col-md-5 text-center"> ... </div>
+      </script>
+    </details>
+  </div>
+  <div class="defi">
+    <h4>Défi 2 : un bouton CV <span class="niveau moyen">Moyen</span></h4>
+    <p>Ajoute un troisième bouton gris « Télécharger mon CV » avec une icône de téléchargement.</p>
+    <details><summary>Voir la correction</summary>
+      <script type="text/plain" data-kind="code">
+<a href="cv.pdf" class="btn btn-outline-secondary btn-lg mt-2">
+  <i class="bi bi-download"></i> Télécharger mon CV
+</a>
+      </script>
+      <p><code>mt-2</code> évite que les boutons se collent quand ils passent à la ligne sur petit écran.</p>
+    </details>
+  </div>
+  <div class="defi">
+    <h4>Défi 3 : texte centré sur mobile <span class="niveau dur">Plus dur</span></h4>
+    <p>Centre le texte sur téléphone, mais garde-le aligné à gauche sur ordinateur.</p>
+    <details><summary>Voir la correction</summary>
+      <script type="text/plain" data-kind="code">
+<div class="col-md-8 text-center text-md-start">
+      </script>
+      <p><code>text-center</code> s'applique partout, puis <code>text-md-start</code> reprend la main à partir de l'écran moyen. Règle à retenir : <strong>la classe sans préfixe = mobile, avec préfixe = à partir de cette taille</strong>.</p>
+    </details>
+  </div>
+</section>
+
+<!-- ===================== ÉTAPE 4 ===================== -->
+<section class="etape" id="e4">
+  <h2><span class="num">4</span> La section « À propos »</h2>
+  <div class="objectif"><strong>Objectif :</strong> une présentation courte, lisible, avec des espacements propres.</div>
+
+  <h3>Le code</h3>
+  <div class="demo" data-src="frag-about" data-h="300"></div>
+
+  <h3>Explication ligne par ligne</h3>
+  <dl class="expl">
+    <dt><code>&lt;section id="apropos" class="py-5"&gt;</code></dt><dd>Une section de la page. L'<code>id</code> doit être <strong>exactement</strong> celui du lien du menu, sans le <code>#</code>.</dd>
+    <dt><code>py-5</code></dt><dd>Grand espace au-dessus et en dessous. Les espacements vont de <code>0</code> à <code>5</code>.</dd>
+    <dt><code>mb-4</code></dt><dd>Marge en bas (margin-bottom) du titre.</dd>
+    <dt><code>col-lg-8</code></dt><dd>Le texte n'occupe que 8 colonnes sur 12 sur grand écran. Des lignes trop longues fatiguent la lecture.</dd>
+  </dl>
+
+  <h3>Défis</h3>
+  <div class="defi">
+    <h4>Défi 1 : mot en gras <span class="niveau">Facile</span></h4>
+    <p>Mets le mot « Bootstrap » en gras dans un des paragraphes.</p>
+    <details><summary>Voir la correction</summary>
+      <script type="text/plain" data-kind="code">
+<p>J'apprends HTML, CSS et <strong>Bootstrap</strong> à Alger.</p>
+      </script>
+    </details>
+  </div>
+  <div class="defi">
+    <h4>Défi 2 : liste d'infos <span class="niveau moyen">Moyen</span></h4>
+    <p>Ajoute ta ville et ton email dans une liste sans puces, avec une icône devant chaque ligne.</p>
+    <details><summary>Voir la correction</summary>
+      <script type="text/plain" data-kind="code">
+<ul class="list-unstyled">
+  <li><i class="bi bi-geo-alt me-2"></i>Alger, Algérie</li>
+  <li><i class="bi bi-envelope me-2"></i>yacine@exemple.dz</li>
+</ul>
+      </script>
+      <p><code>list-unstyled</code> enlève les puces, <code>me-2</code> espace l'icône du texte.</p>
+    </details>
+  </div>
+  <div class="defi">
+    <h4>Défi 3 : texte + carte « En bref » <span class="niveau dur">Plus dur</span></h4>
+    <p>Mets le texte à gauche (7 colonnes) et une petite carte d'infos à droite (4 colonnes, avec un décalage d'1 colonne). Sur mobile, la carte passe dessous avec un peu d'espace.</p>
+    <details><summary>Voir la correction</summary>
+      <script type="text/plain" data-kind="code">
+<div class="row">
+  <div class="col-lg-7">
+    <p>Je m'appelle Yacine...</p>
+    <p>Mon objectif...</p>
+  </div>
+  <div class="col-lg-4 offset-lg-1 mt-4 mt-lg-0">
+    <div class="card card-body">
+      <h3 class="h6">En bref</h3>
+      <p class="mb-1">Ville : Alger</p>
+      <p class="mb-0">Disponible pour des stages</p>
+    </div>
+  </div>
+</div>
+      </script>
+      <p>7 + 1 (offset) + 4 = 12. <code>mt-4 mt-lg-0</code> : marge en haut sur mobile, supprimée sur grand écran.</p>
+    </details>
+  </div>
+</section>
+
+<!-- ===================== ÉTAPE 5 ===================== -->
+<section class="etape" id="e5">
+  <h2><span class="num">5</span> Les compétences</h2>
+  <div class="objectif"><strong>Objectif :</strong> afficher tes technologies avec des badges et des barres de progression.</div>
+
+  <h3>Le code</h3>
+  <div class="demo" data-src="frag-skills" data-h="420"></div>
+
+  <h3>Explication ligne par ligne</h3>
+  <dl class="expl">
+    <dt><code>bg-light</code></dt><dd>Fond gris clair : on alterne fond blanc / fond gris pour séparer les sections.</dd>
+    <dt><code>badge text-bg-primary</code></dt><dd>Une petite étiquette colorée. <code>text-bg-primary</code> règle le fond <em>et</em> la couleur du texte.</dd>
+    <dt><code>fs-6</code></dt><dd>Taille du texte (font-size) : <code>fs-1</code> est le plus grand, <code>fs-6</code> le plus petit.</dd>
+    <dt><code>me-1 mb-1</code></dt><dd>Petits espaces à droite et en dessous pour que les badges ne se collent pas.</dd>
+    <dt><code>progress</code> + <code>progress-bar</code></dt><dd>Le cadre gris de la barre, et la partie colorée à l'intérieur.</dd>
+    <dt><code>style="width: 80%"</code></dt><dd>Le niveau de la barre. C'est le seul endroit où on écrit du CSS « en ligne ».</dd>
+    <dt><code>role="progressbar"</code> + <code>aria-...</code></dt><dd>Informations pour les lecteurs d'écran (accessibilité). On les garde toujours.</dd>
+  </dl>
+
+  <h3>Défis</h3>
+  <div class="defi">
+    <h4>Défi 1 : un badge de plus <span class="niveau">Facile</span></h4>
+    <p>Ajoute un badge « React » de couleur grise.</p>
+    <details><summary>Voir la correction</summary>
+      <script type="text/plain" data-kind="code">
+<span class="badge text-bg-secondary fs-6 me-1 mb-1">React</span>
+      </script>
+    </details>
+  </div>
+  <div class="defi">
+    <h4>Défi 2 : une barre Git à 60 % <span class="niveau moyen">Moyen</span></h4>
+    <details><summary>Voir la correction</summary>
+      <script type="text/plain" data-kind="code">
+<p class="mb-1">Git</p>
+<div class="progress mb-3" role="progressbar" aria-label="Git" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
+  <div class="progress-bar" style="width: 60%"></div>
+</div>
+      </script>
+      <p>Pense à changer le <code>style</code> <strong>et</strong> le <code>aria-valuenow</code>.</p>
+    </details>
+  </div>
+  <div class="defi">
+    <h4>Défi 3 : barre rayée et animée <span class="niveau dur">Plus dur</span></h4>
+    <p>Rends la barre JavaScript rayée, avec des rayures qui bougent (cherche <em>Bootstrap progress striped</em>).</p>
+    <details><summary>Voir la correction</summary>
+      <script type="text/plain" data-kind="code">
+<div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 45%"></div>
+      </script>
+    </details>
+  </div>
+</section>
+
+<!-- ===================== ÉTAPE 6 ===================== -->
+<section class="etape" id="e6">
+  <h2><span class="num">6</span> Les projets (cartes)</h2>
+  <div class="objectif"><strong>Objectif :</strong> trois cartes de même hauteur : 1 par ligne sur mobile, 3 sur ordinateur.</div>
+
+  <h3>Le code</h3>
+  <div class="demo" data-src="frag-projects" data-h="520"></div>
+  <p>La classe <code>projet-img</code> est à nous aussi. Ajoute-la dans ta balise <code>&lt;style&gt;</code> :</p>
+  <script type="text/plain" data-kind="code">
+.projet-img {
+  height: 140px;
+  color: #fff; font-size: 2.5rem;
+}
+  </script>
+
+  <h3>Explication ligne par ligne</h3>
+  <dl class="expl">
+    <dt><code>row row-cols-1 row-cols-md-3 g-4</code></dt><dd>Une grille « automatique » : <code>row-cols-1</code> = 1 carte par ligne sur mobile, <code>row-cols-md-3</code> = 3 par ligne dès l'écran moyen. Plus besoin de calculer les <code>col-md-4</code>.</dd>
+    <dt><code>&lt;div class="col"&gt;</code></dt><dd>Une case de la grille. Chaque carte va dans son propre <code>col</code>.</dd>
+    <dt><code>card h-100</code></dt><dd>La carte. <code>h-100</code> = hauteur 100 % de la case : toutes les cartes ont la même hauteur, même si le texte est plus court.</dd>
+    <dt><code>d-flex align-items-center justify-content-center</code></dt><dd>Centre l'icône au milieu du bloc coloré, en hauteur et en largeur.</dd>
+    <dt><code>style="background:#0f766e;"</code></dt><dd>Une couleur de fond différente par projet. Quand tu auras de vraies captures d'écran, remplace ce bloc par <code>&lt;img src="capture.png" class="card-img-top" alt="..."&gt;</code>.</dd>
+    <dt><code>card-body</code>, <code>card-title h5</code>, <code>card-text</code></dt><dd>Le contenu de la carte, le titre (en taille <code>h5</code>) et le texte.</dd>
+    <dt><code>badge text-bg-secondary</code></dt><dd>Les technologies utilisées, en petites étiquettes grises.</dd>
+    <dt><code>card-footer bg-white border-0 pb-3</code></dt><dd>Le bas de la carte, sans fond gris ni trait, pour y placer le bouton.</dd>
+  </dl>
+
+  <h3>Défis</h3>
+  <div class="defi">
+    <h4>Défi 1 : un 4ᵉ projet <span class="niveau">Facile</span></h4>
+    <p>Ajoute une carte « Mini boutique » : catalogue avec un t-shirt à 2 500 DA et une casquette à 1 200 DA.</p>
+    <details><summary>Voir la correction</summary>
+      <script type="text/plain" data-kind="code">
+<div class="col">
+  <div class="card h-100">
+    <div class="projet-img d-flex align-items-center justify-content-center" style="background:#9f1239;">
+      <i class="bi bi-bag"></i>
+    </div>
+    <div class="card-body">
+      <h3 class="card-title h5">Mini boutique</h3>
+      <p class="card-text">Catalogue : t-shirt à 2 500 DA, casquette à 1 200 DA.</p>
+      <span class="badge text-bg-secondary">JavaScript</span>
+    </div>
+    <div class="card-footer bg-white border-0 pb-3">
+      <a href="#" class="btn btn-outline-primary btn-sm">Voir le projet</a>
+    </div>
+  </div>
+</div>
+      </script>
+      <p>Copie-colle un bloc <code>col</code> existant puis change les textes.</p>
+    </details>
+  </div>
+  <div class="defi">
+    <h4>Défi 2 : grille adaptée à 4 cartes <span class="niveau moyen">Moyen</span></h4>
+    <p>Affiche 1 carte par ligne sur mobile, 2 sur écran moyen et 4 sur très grand écran.</p>
+    <details><summary>Voir la correction</summary>
+      <script type="text/plain" data-kind="code">
+<div class="row row-cols-1 row-cols-md-2 row-cols-xl-4 g-4">
+      </script>
+    </details>
+  </div>
+  <div class="defi">
+    <h4>Défi 3 : lien GitHub <span class="niveau dur">Plus dur</span></h4>
+    <p>Fais un bouton « Code source » avec l'icône GitHub, qui ouvre ton dépôt dans un <strong>nouvel onglet</strong>.</p>
+    <details><summary>Voir la correction</summary>
+      <script type="text/plain" data-kind="code">
+<a href="https://github.com/ton-nom/ton-projet" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm">
+  <i class="bi bi-github"></i> Code source
+</a>
+      </script>
+      <p><code>target="_blank"</code> ouvre un nouvel onglet ; <code>rel="noopener noreferrer"</code> protège ton site (bonne habitude de sécurité).</p>
+    </details>
+  </div>
+</section>
+
+<!-- ===================== ÉTAPE 7 ===================== -->
+<section class="etape" id="e7">
+  <h2><span class="num">7</span> Le formulaire de contact</h2>
+  <div class="objectif"><strong>Objectif :</strong> un formulaire propre, et tes coordonnées à côté.</div>
+
+  <h3>Le code</h3>
+  <div class="demo" data-src="frag-contact" data-h="520"></div>
+  <p>Dans la démo, l'envoi est bloqué pour ne pas ouvrir ta messagerie. Sur ton vrai site, il fonctionnera.</p>
+
+  <h3>Explication ligne par ligne</h3>
+  <dl class="expl">
+    <dt><code>&lt;form action="mailto:..."&gt;</code></dt><dd>Au clic sur « Envoyer », le logiciel de mail du visiteur s'ouvre avec le message prêt. C'est simple, mais ça ne marche que si le visiteur a une messagerie configurée. Plus tard, tu pourras utiliser un service comme Formspree.</dd>
+    <dt><code>&lt;label for="nom"&gt;</code> + <code>id="nom"</code></dt><dd>Le <code>for</code> du label et l'<code>id</code> du champ doivent être identiques : cliquer sur le texte active le champ.</dd>
+    <dt><code>form-label</code> / <code>form-control</code></dt><dd>Les styles Bootstrap du texte et des champs (largeur 100 %, bordures arrondies).</dd>
+    <dt><code>mb-3</code></dt><dd>Espace entre deux champs.</dd>
+    <dt><code>type="email"</code></dt><dd>Le navigateur vérifie tout seul qu'il y a un @.</dd>
+    <dt><code>required</code></dt><dd>Le champ ne peut pas rester vide.</dd>
+    <dt><code>&lt;textarea rows="4"&gt;</code></dt><dd>Une zone de texte sur 4 lignes.</dd>
+    <dt><code>col-lg-5 offset-lg-1 mt-4 mt-lg-0</code></dt><dd>Colonne des coordonnées, décalée d'1 colonne sur grand écran, avec une marge en haut seulement sur mobile.</dd>
+  </dl>
+
+  <h3>Défis</h3>
+  <div class="defi">
+    <h4>Défi 1 : champ téléphone <span class="niveau">Facile</span></h4>
+    <details><summary>Voir la correction</summary>
+      <script type="text/plain" data-kind="code">
+<div class="mb-3">
+  <label for="tel" class="form-label">Téléphone</label>
+  <input type="tel" class="form-control" id="tel" name="tel" placeholder="0555 00 00 00">
+</div>
+      </script>
+    </details>
+  </div>
+  <div class="defi">
+    <h4>Défi 2 : nom et email côte à côte <span class="niveau moyen">Moyen</span></h4>
+    <p>Sur ordinateur, place ces deux champs sur la même ligne. Sur mobile, ils s'empilent.</p>
+    <details><summary>Voir la correction</summary>
+      <script type="text/plain" data-kind="code">
+<div class="row">
+  <div class="col-md-6 mb-3">
+    <label for="nom" class="form-label">Nom</label>
+    <input type="text" class="form-control" id="nom" name="nom" required>
+  </div>
+  <div class="col-md-6 mb-3">
+    <label for="email" class="form-label">Email</label>
+    <input type="email" class="form-control" id="email" name="email" required>
+  </div>
+</div>
+      </script>
+    </details>
+  </div>
+  <div class="defi">
+    <h4>Défi 3 : liste déroulante <span class="niveau dur">Plus dur</span></h4>
+    <p>Ajoute « Type de projet » avec les choix : Site vitrine, Boutique en ligne, Autre.</p>
+    <details><summary>Voir la correction</summary>
+      <script type="text/plain" data-kind="code">
+<div class="mb-3">
+  <label for="type" class="form-label">Type de projet</label>
+  <select class="form-select" id="type" name="type">
+    <option>Site vitrine</option>
+    <option>Boutique en ligne</option>
+    <option>Autre</option>
+  </select>
+</div>
+      </script>
+      <p>Attention : pour une liste, la classe est <code>form-select</code> et non <code>form-control</code>.</p>
+    </details>
+  </div>
+</section>
+
+<!-- ===================== ÉTAPE 8 ===================== -->
+<section class="etape" id="e8">
+  <h2><span class="num">8</span> Le pied de page et le test mobile</h2>
+  <div class="objectif"><strong>Objectif :</strong> terminer la page et vérifier qu'elle s'adapte bien à tous les écrans.</div>
+
+  <h3>Le code</h3>
+  <div class="demo" data-src="frag-footer" data-h="200"></div>
+
+  <h3>Explication ligne par ligne</h3>
+  <dl class="expl">
+    <dt><code>py-4 text-center</code></dt><dd>Espace vertical et texte centré.</dd>
+    <dt><code>text-secondary border-top</code></dt><dd>Texte gris et trait au-dessus pour séparer du reste.</dd>
+    <dt><code>&lt;small&gt;</code></dt><dd>Texte en plus petit.</dd>
+    <dt><code>&lt;span id="annee"&gt;</code></dt><dd>Un emplacement qu'on remplira avec JavaScript dans le défi 1.</dd>
+  </dl>
+
+  <div class="note"><strong>Tester sur mobile sans téléphone :</strong> dans Chrome, appuie sur <kbd>F12</kbd>, puis sur l'icône « téléphone/tablette » (ou <kbd>Ctrl + Shift + M</kbd>). Choisis un appareil et vérifie que rien ne déborde, que le menu hamburger s'ouvre et que les cartes s'empilent.</div>
+
+  <h3>Défis</h3>
+  <div class="defi">
+    <h4>Défi 1 : l'année automatique <span class="niveau">Facile</span></h4>
+    <p>Fais afficher l'année en cours sans jamais la modifier à la main (JavaScript).</p>
+    <details><summary>Voir la correction</summary>
+      <script type="text/plain" data-kind="code">
+<!-- À placer juste avant </body>, après le script Bootstrap -->
+<script>
+  document.getElementById('annee').textContent = new Date().getFullYear();
+<\/script>
+      </script>
+      <p><code>getElementById('annee')</code> trouve l'emplacement, <code>new Date().getFullYear()</code> donne l'année, <code>textContent</code> écrit dedans.</p>
+    </details>
+  </div>
+  <div class="defi">
+    <h4>Défi 2 : icônes de réseaux <span class="niveau moyen">Moyen</span></h4>
+    <p>Ajoute deux icônes cliquables (GitHub et LinkedIn) dans le pied de page.</p>
+    <details><summary>Voir la correction</summary>
+      <script type="text/plain" data-kind="code">
+<div class="mb-2 fs-4">
+  <a href="https://github.com/ton-nom" class="text-secondary me-3" aria-label="GitHub"><i class="bi bi-github"></i></a>
+  <a href="https://linkedin.com/in/ton-nom" class="text-secondary" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+</div>
+      </script>
+      <p>Comme une icône n'a pas de texte, <code>aria-label</code> dit aux lecteurs d'écran où mène le lien.</p>
+    </details>
+  </div>
+  <div class="defi">
+    <h4>Défi 3 : bouton « retour en haut » <span class="niveau dur">Plus dur</span></h4>
+    <p>Un bouton rond fixé en bas à droite de l'écran, qui remonte en haut de la page.</p>
+    <details><summary>Voir la correction</summary>
+      <script type="text/plain" data-kind="code">
+<a href="#accueil" class="btn btn-primary rounded-circle position-fixed bottom-0 end-0 m-3" aria-label="Retour en haut">
+  <i class="bi bi-arrow-up"></i>
+</a>
+      </script>
+      <p><code>position-fixed bottom-0 end-0</code> colle le bouton dans le coin en bas à droite, <code>m-3</code> le décolle du bord.</p>
+    </details>
+  </div>
+</section>
+
+<!-- ===================== ÉTAPE 9 ===================== -->
+<section class="etape" id="e9">
+  <h2><span class="num">9</span> L'assemblage final et la personnalisation</h2>
+  <div class="objectif"><strong>Objectif :</strong> réunir toutes les parties dans un seul fichier et le rendre personnel.</div>
+
+  <p>Voici la page complète : squelette (étape 1) + menu (2) + accueil (3) + à propos (4) + compétences (5) + projets (6) + contact (7) + pied de page (8) + le CSS perso dans <code>&lt;style&gt;</code>. Tu peux la modifier ici, puis la télécharger.</p>
+
+  <div class="demo" data-src="final" data-mode="full" data-h="640"></div>
+  <p><button class="btn-main" id="dl">Télécharger index.html</button></p>
+
+  <h3>Le CSS perso, expliqué</h3>
+  <dl class="expl">
+    <dt><code>:root { --bs-primary: ... }</code></dt><dd>Change la couleur principale de Bootstrap (badges, barres, textes, etc.).</dd>
+    <dt><code>.btn-primary { ... }</code>, <code>.btn-outline-primary { ... }</code></dt><dd>Bootstrap ne relie pas les boutons à cette variable : on donne donc aussi la couleur aux boutons, y compris au survol (hover).</dd>
+    <dt><code>html { scroll-behavior: smooth }</code></dt><dd>Quand on clique un lien du menu, la page glisse doucement.</dd>
+    <dt><code>section { scroll-margin-top: 70px }</code></dt><dd>Évite que le menu fixe cache le titre de la section où on arrive.</dd>
+  </dl>
+
+  <h3>Défis finaux</h3>
+  <div class="defi">
+    <h4>Défi 1 : ta couleur <span class="niveau">Facile</span></h4>
+    <p>Remplace le vert par du bleu dans tout le site, en une seule opération.</p>
+    <details><summary>Voir la correction</summary>
+      <p>Dans VS Code, appuie sur <kbd>Ctrl + H</kbd> (chercher / remplacer) et fais :</p>
+      <script type="text/plain" data-kind="code">
+#0f766e  →  #1d4ed8     (couleur principale)
+#0b5f59  →  #1e40af     (couleur au survol)
+15, 118, 110  →  29, 78, 216     (même couleur en RVB)
+      </script>
+      <p>Tu peux aussi changer les couleurs des blocs de projets (<code>style="background:..."</code>).</p>
+    </details>
+  </div>
+  <div class="defi">
+    <h4>Défi 2 : ta vraie photo <span class="niveau moyen">Moyen</span></h4>
+    <p>Remplace le cercle d'initiales par ta photo, placée dans le même dossier que <code>index.html</code>.</p>
+    <details><summary>Voir la correction</summary>
+      <script type="text/plain" data-kind="code">
+<img src="photo.jpg" alt="Photo de Yacine" class="rounded-circle"
+     width="160" height="160" style="object-fit: cover;">
+      </script>
+      <p>À mettre à la place de <code>&lt;div class="avatar ..."&gt;YB&lt;/div&gt;</code>. <code>object-fit: cover</code> évite que la photo soit déformée. Le texte <code>alt</code> décrit l'image (accessibilité).</p>
+    </details>
+  </div>
+  <div class="defi">
+    <h4>Défi 3 : mettre le site en ligne <span class="niveau dur">Plus dur</span></h4>
+    <p>Publie ton portfolio gratuitement pour envoyer un lien à tes clients et recruteurs.</p>
+    <details><summary>Voir la correction</summary>
+      <ol>
+        <li>Vérifie que ton fichier s'appelle bien <code>index.html</code> et que la photo est dans le même dossier.</li>
+        <li><strong>Option simple :</strong> Netlify Drop. Tu glisses le dossier <code>portfolio</code> sur la page, et tu obtiens un lien.</li>
+        <li><strong>Option développeur :</strong> crée un dépôt sur GitHub, envoie-y tes fichiers, puis active GitHub Pages dans les paramètres du dépôt.</li>
+        <li>Teste le lien sur ton téléphone avant de le partager.</li>
+      </ol>
+    </details>
+  </div>
+
+  <div class="note"><strong>Mabrouk !</strong> Tu as construit un site complet. Étape suivante : remplace les textes d'exemple par tes vrais projets, avec des captures d'écran.</div>
+</section>
+
+<!-- ===================== AIDE-MÉMOIRE ===================== -->
+<section class="etape" id="aide">
+  <h2>Aide-mémoire des classes utilisées</h2>
+  <table>
+    <tr><th>Famille</th><th>Classes</th><th>Rôle</th></tr>
+    <tr><td>Espacements</td><td><code>mb-3</code> <code>mt-4</code> <code>me-2</code> <code>ms-auto</code> <code>py-5</code> <code>pt-5</code></td><td>m = marge (dehors), p = padding (dedans). t, b, s, e = haut, bas, début, fin. x, y = horizontal, vertical. Valeurs de 0 à 5.</td></tr>
+    <tr><td>Texte</td><td><code>fw-bold</code> <code>text-center</code> <code>text-secondary</code> <code>display-4</code> <code>lead</code> <code>fs-6</code></td><td>Gras, alignement, couleur grise, grands titres, texte d'intro, taille.</td></tr>
+    <tr><td>Couleurs</td><td><code>bg-light</code> <code>bg-white</code> <code>text-primary</code> <code>text-bg-primary</code></td><td>Fonds et couleurs de texte.</td></tr>
+    <tr><td>Grille</td><td><code>container</code> <code>row</code> <code>col-md-6</code> <code>row-cols-md-3</code> <code>g-4</code> <code>offset-lg-1</code></td><td>Mise en page sur 12 colonnes.</td></tr>
+    <tr><td>Flex</td><td><code>d-flex</code> <code>align-items-center</code> <code>justify-content-center</code></td><td>Centrer et aligner des éléments.</td></tr>
+    <tr><td>Composants</td><td><code>navbar</code> <code>btn</code> <code>card</code> <code>badge</code> <code>progress</code> <code>form-control</code></td><td>Menu, boutons, cartes, étiquettes, barres, champs.</td></tr>
+    <tr><td>Tailles d'écran</td><td>(rien) · <code>sm</code> · <code>md</code> · <code>lg</code> · <code>xl</code></td><td>Mobile · ≥576 px · ≥768 px · ≥992 px · ≥1200 px. <code>col-md-6</code> = « 6 colonnes à partir de 768 px ».</td></tr>
+  </table>
+  <p>La documentation officielle avec tous les exemples : <strong>getbootstrap.com/docs/5.3</strong>. Les icônes : <strong>icons.getbootstrap.com</strong>.</p>
+</section>
+
+<!-- ===================== ERREURS ===================== -->
+<section class="etape" id="erreurs">
+  <h2>Les 6 erreurs classiques (et comment les corriger)</h2>
+  <table>
+    <tr><th>Symptôme</th><th>Cause probable</th><th>Solution</th></tr>
+    <tr><td>Le site est minuscule sur téléphone</td><td>Ligne <code>viewport</code> oubliée</td><td>Remets la balise <code>&lt;meta name="viewport" ...&gt;</code> dans le <code>&lt;head&gt;</code>.</td></tr>
+    <tr><td>Le hamburger ne s'ouvre pas</td><td>Script Bootstrap oublié, ou <code>data-bs-target</code> ≠ <code>id</code></td><td>Vérifie le <code>&lt;script&gt;</code> en bas de page et que <code>#menu</code> correspond à <code>id="menu"</code>.</td></tr>
+    <tr><td>Les colonnes ne s'alignent pas</td><td><code>col</code> placée hors d'une <code>row</code></td><td>Structure : <code>container</code> &gt; <code>row</code> &gt; <code>col</code>.</td></tr>
+    <tr><td>Aucun style Bootstrap</td><td>Pas de connexion, ou faute dans l'URL du <code>&lt;link&gt;</code></td><td>Vérifie internet et recopie l'URL exactement.</td></tr>
+    <tr><td>Un lien du menu ne fait rien</td><td><code>href="#projets"</code> ≠ <code>id="projets"</code></td><td>Même orthographe, même casse (majuscules/minuscules).</td></tr>
+    <tr><td>Ma modification n'apparaît pas</td><td>Fichier non sauvegardé ou page non rafraîchie</td><td><kbd>Ctrl + S</kbd> puis <kbd>F5</kbd> (ou <kbd>Ctrl + F5</kbd>).</td></tr>
+  </table>
+</section>
+
+<footer class="fin">Guide pas-à-pas · Portfolio Bootstrap pour débutants</footer>
+</div>
+
+<!-- ===================== SOURCES DU CODE (texte brut) ===================== -->
+<script type="text/plain" id="frag-skeleton">
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mon Portfolio</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <div class="container py-5">
+    <h1 class="text-primary">Salam Bootstrap !</h1>
+    <p class="lead">Si ce texte est bien mis en forme, Bootstrap est chargé.</p>
+    <button class="btn btn-primary">Mon premier bouton</button>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"><\/script>
+</body>
+</html>
+</script>
+
+<script type="text/plain" id="frag-nav">
+<!-- MENU : fixed-top = reste en haut quand on descend -->
+<nav class="navbar navbar-expand-lg bg-white border-bottom fixed-top">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="#accueil">Yacine Benali</a>
+
+    <!-- Bouton hamburger (visible sur téléphone) -->
+    <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse" data-bs-target="#menu"
+            aria-controls="menu" aria-expanded="false" aria-label="Ouvrir le menu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="menu">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#apropos">À propos</a></li>
+        <li class="nav-item"><a class="nav-link" href="#competences">Compétences</a></li>
+        <li class="nav-item"><a class="nav-link" href="#projets">Projets</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+</script>
+
+<script type="text/plain" id="frag-hero">
+<!-- ACCUEIL -->
+<header id="accueil" class="bg-light pt-5">
+  <div class="container py-5 mt-4">
+    <div class="row align-items-center g-4">
+
+      <!-- Colonne texte -->
+      <div class="col-md-8">
+        <h1 class="display-4 fw-bold">Salam, je suis Yacine Benali.</h1>
+        <p class="lead text-secondary">
+          Développeur web débutant à Alger. Je crée des sites simples,
+          rapides et agréables à utiliser.
+        </p>
+        <a href="#projets" class="btn btn-primary btn-lg me-2">Voir mes projets</a>
+        <a href="#contact" class="btn btn-outline-primary btn-lg">Me contacter</a>
+      </div>
+
+      <!-- Colonne "photo" : des initiales pour l'instant -->
+      <div class="col-md-4 text-center">
+        <div class="avatar rounded-circle d-inline-flex align-items-center justify-content-center">
+          YB
+        </div>
+      </div>
+
+    </div>
+  </div>
+</header>
+</script>
+
+<script type="text/plain" id="frag-about">
+<!-- À PROPOS -->
+<section id="apropos" class="py-5">
+  <div class="container">
+    <h2 class="mb-4">À propos</h2>
+    <div class="row">
+      <div class="col-lg-8">
+        <p>
+          Je m'appelle Yacine, j'ai 22 ans et j'apprends le développement web
+          à Alger. J'aime transformer une idée en page qui fonctionne.
+        </p>
+        <p>
+          Mon objectif : construire des sites pour les commerces et les
+          associations de chez nous, avec des outils modernes.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+</script>
+
+<script type="text/plain" id="frag-skills">
+<!-- COMPÉTENCES -->
+<section id="competences" class="py-5 bg-light">
+  <div class="container">
+    <h2 class="mb-4">Compétences</h2>
+
+    <!-- Badges -->
+    <div class="mb-4">
+      <span class="badge text-bg-primary fs-6 me-1 mb-1">HTML</span>
+      <span class="badge text-bg-primary fs-6 me-1 mb-1">CSS</span>
+      <span class="badge text-bg-primary fs-6 me-1 mb-1">Bootstrap</span>
+      <span class="badge text-bg-primary fs-6 me-1 mb-1">JavaScript</span>
+      <span class="badge text-bg-primary fs-6 me-1 mb-1">Git</span>
+    </div>
+
+    <!-- Barres de progression : change width pour le niveau -->
+    <div class="row">
+      <div class="col-md-6">
+        <p class="mb-1">HTML</p>
+        <div class="progress mb-3" role="progressbar" aria-label="HTML" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
+          <div class="progress-bar" style="width: 80%"></div>
+        </div>
+
+        <p class="mb-1">CSS / Bootstrap</p>
+        <div class="progress mb-3" role="progressbar" aria-label="CSS et Bootstrap" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
+          <div class="progress-bar" style="width: 70%"></div>
+        </div>
+
+        <p class="mb-1">JavaScript</p>
+        <div class="progress mb-3" role="progressbar" aria-label="JavaScript" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100">
+          <div class="progress-bar" style="width: 45%"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</script>
+
+<script type="text/plain" id="frag-projects">
+<!-- PROJETS -->
+<section id="projets" class="py-5">
+  <div class="container">
+    <h2 class="mb-4">Projets</h2>
+
+    <!-- 1 carte par ligne sur mobile, 3 sur écran moyen et plus -->
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+
+      <!-- Projet 1 : copie-colle ce bloc pour en ajouter -->
+      <div class="col">
+        <div class="card h-100">
+          <div class="projet-img d-flex align-items-center justify-content-center" style="background:#0f766e;">
+            <i class="bi bi-shop"></i>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title h5">Vitrine pâtisserie</h3>
+            <p class="card-text">Site d'une pâtisserie de Sétif : menu, photos et horaires.</p>
+            <span class="badge text-bg-secondary">HTML</span>
+            <span class="badge text-bg-secondary">Bootstrap</span>
+          </div>
+          <div class="card-footer bg-white border-0 pb-3">
+            <a href="#" class="btn btn-outline-primary btn-sm">Voir le projet</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Projet 2 -->
+      <div class="col">
+        <div class="card h-100">
+          <div class="projet-img d-flex align-items-center justify-content-center" style="background:#b45309;">
+            <i class="bi bi-currency-exchange"></i>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title h5">Convertisseur DZD</h3>
+            <p class="card-text">Convertit des euros en dinars algériens (DA) selon le taux saisi.</p>
+            <span class="badge text-bg-secondary">JavaScript</span>
+            <span class="badge text-bg-secondary">CSS</span>
+          </div>
+          <div class="card-footer bg-white border-0 pb-3">
+            <a href="#" class="btn btn-outline-primary btn-sm">Voir le projet</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Projet 3 -->
+      <div class="col">
+        <div class="card h-100">
+          <div class="projet-img d-flex align-items-center justify-content-center" style="background:#4338ca;">
+            <i class="bi bi-list-check"></i>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title h5">Liste de tâches</h3>
+            <p class="card-text">Une application pour ajouter, cocher et supprimer des tâches.</p>
+            <span class="badge text-bg-secondary">JavaScript</span>
+          </div>
+          <div class="card-footer bg-white border-0 pb-3">
+            <a href="#" class="btn btn-outline-primary btn-sm">Voir le projet</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+</script>
+
+<script type="text/plain" id="frag-contact">
+<!-- CONTACT -->
+<section id="contact" class="py-5 bg-light">
+  <div class="container">
+    <h2 class="mb-4">Contact</h2>
+    <div class="row">
+
+      <div class="col-lg-6">
+        <!-- Remplace l'adresse : mailto ouvre la messagerie du visiteur -->
+        <form action="mailto:yacine@exemple.dz" method="post" enctype="text/plain">
+          <div class="mb-3">
+            <label for="nom" class="form-label">Nom</label>
+            <input type="text" class="form-control" id="nom" name="nom" required>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+          </div>
+          <div class="mb-3">
+            <label for="message" class="form-label">Message</label>
+            <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Envoyer le message</button>
+        </form>
+      </div>
+
+      <div class="col-lg-5 offset-lg-1 mt-4 mt-lg-0">
+        <p><i class="bi bi-geo-alt me-2"></i>Alger, Algérie</p>
+        <p><i class="bi bi-envelope me-2"></i>yacine@exemple.dz</p>
+        <p><i class="bi bi-github me-2"></i><a href="#" class="text-decoration-none">github.com/ton-nom</a></p>
+        <p><i class="bi bi-linkedin me-2"></i><a href="#" class="text-decoration-none">linkedin.com/in/ton-nom</a></p>
+      </div>
+
+    </div>
+  </div>
+</section>
+</script>
+
+<script type="text/plain" id="frag-footer">
+<!-- PIED DE PAGE -->
+<footer class="py-4 text-center text-secondary border-top">
+  <div class="container">
+    <small>© <span id="annee">2026</span> Yacine Benali. Fait avec Bootstrap à Alger.</small>
+  </div>
+</footer>
+</script>
+
+<script>
+(function () {
+  var CLOSE = '</scr' + 'ipt>';
+  var BS_CSS = 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css';
+  var ICONS  = 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css';
+  var BS_JS  = 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js';
+
+  var CSS_CUSTOM = [
+    ':root {',
+    '  --bs-primary: #0f766e;',
+    '  --bs-primary-rgb: 15, 118, 110;',
+    '}',
+    '.btn-primary {',
+    '  --bs-btn-bg: #0f766e;',
+    '  --bs-btn-border-color: #0f766e;',
+    '  --bs-btn-hover-bg: #0b5f59;',
+    '  --bs-btn-hover-border-color: #0b5f59;',
+    '  --bs-btn-active-bg: #0b5f59;',
+    '  --bs-btn-active-border-color: #0b5f59;',
+    '}',
+    '.btn-outline-primary {',
+    '  --bs-btn-color: #0f766e;',
+    '  --bs-btn-border-color: #0f766e;',
+    '  --bs-btn-hover-bg: #0f766e;',
+    '  --bs-btn-hover-border-color: #0f766e;',
+    '  --bs-btn-active-bg: #0f766e;',
+    '  --bs-btn-active-border-color: #0f766e;',
+    '}',
+    'html { scroll-behavior: smooth; }',
+    'section { scroll-margin-top: 70px; }',
+    '.avatar {',
+    '  width: 160px; height: 160px;',
+    '  background: #0f766e; color: #fff;',
+    '  font-size: 3.5rem; font-weight: 700;',
+    '}',
+    '.projet-img {',
+    '  height: 140px;',
+    '  color: #fff; font-size: 2.5rem;',
+    '}'
+  ].join('\n');
+
+  function unesc(t) { return t.split('<\\/script>').join(CLOSE); }
+  function src(id) { return unesc(document.getElementById(id).textContent).replace(/^\s*\n/, '').replace(/\s+$/, ''); }
+
+  function buildFinal() {
+    var css = CSS_CUSTOM.split('\n').map(function (l) { return '    ' + l; }).join('\n');
+    return [
+      '<!DOCTYPE html>',
+      '<html lang="fr">',
+      '<head>',
+      '  <meta charset="UTF-8">',
+      '  <meta name="viewport" content="width=device-width, initial-scale=1">',
+      '  <title>Portfolio de Yacine Benali</title>',
+      '',
+      '  <!-- Bootstrap CSS -->',
+      '  <link href="' + BS_CSS + '" rel="stylesheet">',
+      '  <!-- Bootstrap Icons -->',
+      '  <link href="' + ICONS + '" rel="stylesheet">',
+      '',
+      '  <!-- Notre CSS perso -->',
+      '  <style>',
+      css,
+      '  </style>',
+      '</head>',
+      '<body>',
+      '',
+      src('frag-nav'), '',
+      src('frag-hero'), '',
+      src('frag-about'), '',
+      src('frag-skills'), '',
+      src('frag-projects'), '',
+      src('frag-contact'), '',
+      src('frag-footer'), '',
+      '  <!-- Bootstrap JS -->',
+      '  <script src="' + BS_JS + '">' + CLOSE,
+      '  <!-- L\'année du pied de page se met à jour toute seule -->',
+      '  <script>document.getElementById("annee").textContent = new Date().getFullYear();' + CLOSE,
+      '</body>',
+      '</html>'
+    ].join('\n');
+  }
+
+  function getSrc(id) { return id === 'final' ? buildFinal() : src(id); }
+
+  function wrap(body) {
+    return '<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8">' +
+      '<meta name="viewport" content="width=device-width, initial-scale=1">' +
+      '<link href="' + BS_CSS + '" rel="stylesheet">' +
+      '<link href="' + ICONS + '" rel="stylesheet">' +
+      '<style>' + CSS_CUSTOM + '</style></head><body>' + body +
+      '<script src="' + BS_JS + '">' + CLOSE +
+      '<script>document.addEventListener("submit",function(e){e.preventDefault()});' +
+      'document.addEventListener("click",function(e){var a=e.target.closest("a");' +
+      'if(a&&a.getAttribute("href")==="#"){e.preventDefault()}});' + CLOSE +
+      '</body></html>';
+  }
+
+  function copyText(text, btn) {
+    function done() { var o = btn.textContent; btn.textContent = 'Copié !'; setTimeout(function () { btn.textContent = o; }, 1400); }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, function () { fallback(); });
+    } else { fallback(); }
+    function fallback() {
+      var ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta);
+      ta.select(); try { document.execCommand('copy'); done(); } catch (e) {} ta.remove();
+    }
+  }
+
+  // Blocs de code statiques (solutions, snippets)
+  document.querySelectorAll('script[data-kind="code"]').forEach(function (s) {
+    var text = unesc(s.textContent).replace(/^\s*\n/, '').replace(/\s+$/, '');
+    var box = document.createElement('div'); box.className = 'codebox';
+    var pre = document.createElement('pre'); pre.className = 'code';
+    var code = document.createElement('code'); code.textContent = text;
+    pre.appendChild(code); box.appendChild(pre);
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'copy'; b.textContent = 'Copier';
+    b.addEventListener('click', function () { copyText(text, b); });
+    box.appendChild(b);
+    s.after(box);
+  });
+
+  // Démos live (éditeur + résultat)
+  var finalTa = null;
+  document.querySelectorAll('.demo').forEach(function (d) {
+    var id = d.dataset.src, full = d.dataset.mode === 'full', h = d.dataset.h || '360';
+    d.innerHTML =
+      '<div class="pane"><div class="bar">Code (modifie-le !)<span>' +
+      '<button type="button" class="btn-mini" data-a="reset">Réinitialiser</button>' +
+      '<button type="button" class="btn-mini" data-a="copy">Copier</button></span></div>' +
+      '<textarea spellcheck="false" aria-label="Code modifiable"></textarea></div>' +
+      '<div class="pane"><div class="bar">Résultat<span>' +
+      '<button type="button" class="btn-mini" data-w="100%">Ordinateur</button>' +
+      '<button type="button" class="btn-mini" data-w="375px">Mobile</button></span></div>' +
+      '<div class="framewrap"><iframe title="Résultat" style="height:' + h + 'px"></iframe></div></div>';
+    var ta = d.querySelector('textarea'), fr = d.querySelector('iframe');
+    ta.style.height = h + 'px';
+    var original = getSrc(id);
+    ta.value = original;
+    function render() { fr.srcdoc = full ? ta.value : wrap(ta.value); }
+    var t; ta.addEventListener('input', function () { clearTimeout(t); t = setTimeout(render, 300); });
+    d.querySelector('[data-a="reset"]').addEventListener('click', function () { ta.value = original; render(); });
+    d.querySelector('[data-a="copy"]').addEventListener('click', function (e) { copyText(ta.value, e.currentTarget); });
+    d.querySelectorAll('[data-w]').forEach(function (b) {
+      b.addEventListener('click', function () { fr.style.width = b.dataset.w; });
+    });
+    render();
+    if (id === 'final') finalTa = ta;
+  });
+
+  // Téléchargement du fichier final
+  document.getElementById('dl').addEventListener('click', function () {
+    var blob = new Blob([finalTa.value], { type: 'text/html;charset=utf-8' });
+    var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'index.html';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+  });
+})();
+</script>
+</body>
+</html>

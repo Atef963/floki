@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>دليل: أنشئ موقع البورتفوليو الخاص بك باستخدام Bootstrap خطوة بخطوة</title>
+<style>
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:"Segoe UI",Tahoma,"Noto Sans Arabic","Noto Naskh Arabic",system-ui,sans-serif;color:#1f2937;background:#f4f7f7;line-height:1.85}
+  a{color:#0f766e}
+  :focus-visible{outline:3px solid #f59e0b;outline-offset:2px}
+  .topbar{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid #d9e2e2;display:flex;gap:.25rem;overflow-x:auto;padding:.5rem 1rem;white-space:nowrap}
+  .topbar a{text-decoration:none;color:#374151;padding:.3rem .8rem;border-radius:999px;font-size:.95rem}
+  .topbar a:hover{background:#e6f2f0;color:#0f766e}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 1rem 4rem}
+  header.intro{padding:2.5rem 0 1rem}
+  header.intro h1{font-size:clamp(1.7rem,4.2vw,2.5rem);line-height:1.4;margin:0 0 .75rem}
+  header.intro p{max-width:68ch;font-size:1.08rem;color:#374151}
+  .box{background:#fff;border:1px solid #d9e2e2;border-radius:10px;padding:1.25rem 1.5rem;margin:1.25rem 0}
+  .etape{background:#fff;border:1px solid #d9e2e2;border-radius:10px;padding:1.5rem;margin:1.75rem 0}
+  .etape h2{display:flex;align-items:center;gap:.75rem;margin:0 0 .5rem;font-size:1.45rem;line-height:1.5}
+  .etape h3{margin:1.6rem 0 .5rem;font-size:1.1rem}
+  .num{flex:none;width:2.3rem;height:2.3rem;border-radius:50%;background:#0f766e;color:#fff;display:grid;place-items:center;font-size:1rem}
+  .objectif{background:#e6f2f0;border-radius:8px;padding:.7rem 1rem;margin:.75rem 0 1rem}
+  p,li{max-width:75ch}
+  code,kbd{direction:ltr;unicode-bidi:isolate;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+  code{background:#edf2f2;padding:.05em .35em;border-radius:4px;font-size:.9em}
+  kbd{background:#fff;border:1px solid #9fb5b3;border-bottom-width:2px;border-radius:4px;padding:0 .35em;font-size:.88em}
+  .codebox{position:relative;margin:.75rem 0;direction:ltr}
+  pre.code{margin:0;background:#10201f;color:#e6f2f0;padding:1rem;border-radius:8px;overflow-x:auto;font-size:.88rem;line-height:1.55;direction:ltr;text-align:left}
+  pre.code code{background:none;padding:0;color:inherit;font-size:inherit}
+  .copy,.btn-mini{font:inherit;font-size:.8rem;border:1px solid #9fb5b3;background:#fff;color:#1f2937;padding:.2rem .6rem;border-radius:6px;cursor:pointer}
+  .copy:hover,.btn-mini:hover{background:#e6f2f0}
+  .codebox .copy{position:absolute;top:.5rem;right:.5rem}
+  dl.expl{display:grid;grid-template-columns:minmax(0,18rem) 1fr;gap:.4rem 1rem;margin:.5rem 0}
+  dl.expl dt{margin:0}
+  dl.expl dd{margin:0 0 .4rem}
+  @media (max-width:760px){dl.expl{grid-template-columns:1fr}}
+  .demo{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1rem 0;direction:rtl}
+  @media (max-width:900px){.demo{grid-template-columns:1fr}}
+  .pane{min-width:0;border:1px solid #d9e2e2;border-radius:8px;overflow:hidden;background:#fff}
+  .bar{display:flex;justify-content:space-between;align-items:center;gap:.5rem;background:#eef3f3;padding:.4rem .7rem;font-size:.88rem;font-weight:600}
+  .bar span{display:flex;gap:.35rem}
+  .demo textarea{display:block;width:100%;border:0;resize:vertical;padding:.8rem;font:13px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:#10201f;color:#e6f2f0;tab-size:2;direction:ltr;text-align:left}
+  .framewrap{background:#dde5e5;display:flex;justify-content:center}
+  .framewrap iframe{border:0;background:#fff;width:100%;max-width:100%;display:block}
+  .defi{border-right:4px solid #0f766e;background:#f7fbfa;padding:.75rem 1rem;margin:.9rem 0;border-radius:8px 0 0 8px}
+  .defi h4{margin:0 0 .3rem;font-size:1rem}
+  .niveau{font-size:.78rem;font-weight:600;background:#0f766e;color:#fff;border-radius:999px;padding:.05rem .6rem;margin-right:.4rem}
+  .niveau.moyen{background:#b45309}
+  .niveau.dur{background:#9f1239}
+  details{margin:.4rem 0}
+  summary{cursor:pointer;font-weight:600;color:#0f766e}
+  table{border-collapse:collapse;width:100%;font-size:.95rem}
+  th,td{border:1px solid #d9e2e2;padding:.45rem .6rem;text-align:right;vertical-align:top}
+  th{background:#eef3f3}
+  .note{border-right:4px solid #f59e0b;background:#fffbeb;padding:.6rem 1rem;border-radius:8px 0 0 8px;margin:.9rem 0}
+  .btn-main{font:inherit;font-weight:600;background:#0f766e;color:#fff;border:0;border-radius:8px;padding:.6rem 1.1rem;cursor:pointer}
+  .btn-main:hover{background:#0b5f59}
+  footer.fin{text-align:center;color:#4b5563;padding:2rem 0}
+</style>
+</head>
+<body>
+
+<nav class="topbar" aria-label="خطوات الدليل">
+  <a href="#e0">0 · التحضير</a>
+  <a href="#e1">1 · الهيكل</a>
+  <a href="#e2">2 · القائمة</a>
+  <a href="#e3">3 · الواجهة</a>
+  <a href="#e4">4 · نبذة عني</a>
+  <a href="#e5">5 · المهارات</a>
+  <a href="#e6">6 · المشاريع</a>
+  <a href="#e7">7 · التواصل</a>
+  <a href="#e8">8 · التذييل</a>
+  <a href="#e9">9 · التجميع</a>
+  <a href="#aide">مرجع سريع</a>
+  <a href="#erreurs">الأخطاء الشائعة</a>
+</nav>
+
+<div class="wrap">
+
+<header class="intro">
+  <h1>أنشئ موقع البورتفوليو الخاص بك باستخدام Bootstrap خطوة بخطوة</h1>
+  <p>بسم الله نبدأ. في نهاية هذا الدليل سيكون لديك موقع بورتفوليو حقيقي يتكيّف مع الهاتف والحاسوب. لا تقلق إن كنت لا تعرف كل شيء بعد، فسننطلق من الصفر.</p>
+  <div class="box">
+    <strong>كيف تستعمل هذا الدليل</strong>
+    <ol>
+      <li>كل خطوة تبني <strong>جزءًا</strong> من الموقع نفسه: بورتفوليو ياسين بن علي، طالب من الجزائر العاصمة (هذا هو المشروع الذي نبنيه طوال الدليل).</li>
+      <li>الكود في كل جزء <strong>قابل للتعديل</strong>: غيّره وستتحدّث النتيجة فورًا.</li>
+      <li>في نهاية كل خطوة توجد <strong>تحديات</strong> من الأسهل إلى الأصعب. حاول أولًا، ثم اضغط على «عرض التصحيح».</li>
+      <li>في الخطوة 9 تجتمع كل الأجزاء في ملف <code>index.html</code> واحد يمكنك تحميله.</li>
+    </ol>
+    <p><strong>ملاحظة:</strong> تحتاج إلى اتصال بالإنترنت لأن Bootstrap يُحمَّل من CDN (خادم يستضيفه لنا).</p>
+    <p><strong>ملاحظة أخرى:</strong> نصوص الموقع نفسه (الأزرار والعناوين) كتبناها بالفرنسية عمدًا، لأن كثيرًا من المواقع الجزائرية بالفرنسية. أما الشروحات والتعليقات فبالعربية. وفي آخر الدليل تحدٍّ لتحويل الموقع كله إلى العربية من اليمين إلى اليسار.</p>
+  </div>
+</header>
+
+<!-- ===================== الخطوة 0 ===================== -->
+<section class="etape" id="e0">
+  <h2><span class="num">0</span> تجهيز مساحة العمل</h2>
+  <div class="objectif"><strong>الهدف:</strong> أن يكون لديك مجلد وملف <code>index.html</code>، وأن تعرف كيف تعرضه في المتصفح.</div>
+
+  <ol>
+    <li>ثبّت <strong>Visual Studio Code</strong> (محرر مجاني) ومتصفحًا (Chrome أو Firefox).</li>
+    <li>أنشئ مجلدًا باسم <code>portfolio</code> على سطح المكتب.</li>
+    <li>في VS Code: <em>File ← Open Folder</em>، اختر <code>portfolio</code>، ثم أنشئ ملفًا جديدًا باسم <code>index.html</code>.</li>
+    <li>لمشاهدة موقعك: انقر نقرًا مزدوجًا على <code>index.html</code> في مستكشف الملفات، فيُفتح في المتصفح.</li>
+    <li>بعد كل تعديل: <kbd>Ctrl + S</kbd> في VS Code للحفظ، ثم <kbd>F5</kbd> في المتصفح للتحديث.</li>
+  </ol>
+  <div class="note"><strong>نصيحة:</strong> في ملف HTML فارغ داخل VS Code، اكتب <code>!</code> ثم اضغط <kbd>Tab</kbd>. سيكتب لك VS Code هيكل الصفحة تلقائيًا.</div>
+
+  <h3>تحدٍّ</h3>
+  <div class="defi">
+    <h4>التحدي 0: صفحتك الأولى <span class="niveau">سهل</span></h4>
+    <p>في <code>index.html</code>، اكتب صفحة تعرض عنوانًا كبيرًا «Salam, je suis [اسمك] !» ثم افتحها في المتصفح.</p>
+    <details>
+      <summary>عرض التصحيح</summary>
+      <script type="text/plain" data-kind="code">
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Test</title>
+</head>
+<body>
+  <h1>Salam, je suis Yacine !</h1>
+</body>
+</html>
+      </script>
+    </details>
+  </div>
+</section>
+
+<!-- ===================== الخطوة 1 ===================== -->
+<section class="etape" id="e1">
+  <h2><span class="num">1</span> هيكل HTML مع Bootstrap</h2>
+  <div class="objectif"><strong>الهدف:</strong> صفحة فارغة لكنها جاهزة: Bootstrap محمَّل ويعمل.</div>
+
+  <p><strong>لماذا Bootstrap؟</strong> بدونه ستحتاج إلى كتابة مئات الأسطر من CSS للحصول على قائمة أو بطاقات أو تخطيط يتكيّف مع الهاتف. يوفّر Bootstrap كل ذلك على شكل <strong>كلاسات</strong> (classes) جاهزة: تكتب <code>class="btn btn-primary"</code> فتحصل على زر جميل.</p>
+
+  <h3>الكود</h3>
+  <div class="demo" data-src="frag-skeleton" data-mode="full" data-h="360"></div>
+
+  <h3>الشرح سطرًا بسطر</h3>
+  <dl class="expl">
+    <dt><code>&lt;!DOCTYPE html&gt;</code></dt><dd>تخبر المتصفح: «هذه صفحة HTML حديثة».</dd>
+    <dt><code>&lt;html lang="fr"&gt;</code></dt><dd>لغة الصفحة. تفيد الترجمة الآلية وقارئات الشاشة. (لو كان موقعك بالعربية فستكتب <code>ar</code>.)</dd>
+    <dt><code>&lt;meta charset="UTF-8"&gt;</code></dt><dd>تسمح بعرض الحروف المشكّلة (é, è, à) والعربية بشكل صحيح.</dd>
+    <dt><code>&lt;meta name="viewport" ...&gt;</code></dt><dd><strong>ضرورية جدًا.</strong> بدونها تظهر الصفحة صغيرة جدًا على الهاتف، كأنها موقع حاسوب مصغَّر.</dd>
+    <dt><code>&lt;title&gt;</code></dt><dd>النص الذي يظهر في تبويب المتصفح.</dd>
+    <dt><code>&lt;link ... bootstrap.min.css&gt;</code></dt><dd>يحمّل كل أنماط Bootstrap من الإنترنت. <code>@5.3.3</code> تثبّت الإصدار حتى لا يتغيّر موقعك من تلقاء نفسه.</dd>
+    <dt><code>&lt;link ... bootstrap-icons&gt;</code></dt><dd>يحمّل الأيقونات (كلاسات <code>bi bi-...</code>).</dd>
+    <dt><code>class="container py-5"</code></dt><dd><code>container</code> يوسّط المحتوى ويحدّ من عرضه. <code>py-5</code> يضيف مسافة في الأعلى والأسفل (p = padding، y = عمودي، 5 = كبيرة).</dd>
+    <dt><code>text-primary</code>، <code>lead</code></dt><dd>اللون الرئيسي للعنوان، ونص تمهيدي أكبر قليلًا.</dd>
+    <dt><code>btn btn-primary</code></dt><dd>زر Bootstrap بلون رئيسي. اكتب دائمًا الكلاسين معًا: <code>btn</code> ثم النوع.</dd>
+    <dt><code>&lt;script ... bundle.min.js&gt;</code></dt><dd>سلوكيات Bootstrap (قائمة الهامبرغر وغيرها). نضعه <strong>في نهاية body</strong> لتظهر الصفحة أولًا.</dd>
+  </dl>
+
+  <h3>التحديات</h3>
+  <div class="defi">
+    <h4>التحدي 1: التخصيص <span class="niveau">سهل</span></h4>
+    <p>غيّر <code>&lt;title&gt;</code> إلى «Portfolio de [اسمك]» والعنوان <code>h1</code> إلى «Salam, je suis [اسمك] !».</p>
+    <details><summary>عرض التصحيح</summary>
+      <script type="text/plain" data-kind="code">
+<title>Portfolio de Yacine</title>
+...
+<h1 class="text-primary">Salam, je suis Yacine !</h1>
+      </script>
+    </details>
+  </div>
+  <div class="defi">
+    <h4>التحدي 2: زر أخضر كبير <span class="niveau moyen">متوسط</span></h4>
+    <p>حوّل الزر إلى زر أخضر وكبير (ابحث في التوثيق عن: <em>Bootstrap buttons</em>).</p>
+    <details><summary>عرض التصحيح</summary>
+      <script type="text/plain" data-kind="code">
+<button class="btn btn-success btn-lg">Mon premier bouton</button>
+      </script>
+      <p><code>btn-success</code> = أخضر، <code>btn-lg</code> = كبير.</p>
+    </details>
+  </div>
+  <div class="defi">
+    <h4>التحدي 3: زر مع أيقونة <span class="niveau dur">أصعب</span></h4>
+    <p>أضف أيقونة قلب قبل نص الزر (ابحث عن <em>bi-heart-fill</em> في أيقونات Bootstrap).</p>
+    <details><summary>عرض التصحيح</summary>
+      <script type="text/plain" data-kind="code">
+<button class="btn btn-primary">
+  <i class="bi bi-heart-fill"></i> Mon premier bouton
+</button>
+      </script>
+    </details>
+  </div>
+</section>
+
+<!-- ===================== الخطوة 2 ===================== -->
+<section class="etape" id="e2">
+  <h2><span class="num">2</span> قائمة التنقّل</h2>
+  <div class="objectif"><strong>الهدف:</strong> قائمة في أعلى الصفحة تتحوّل إلى زر «هامبرغر» على الهاتف.</div>
+  <p>من هنا فصاعدًا نعرض فقط محتوى <code>&lt;body&gt;</code>. الصق كل جزء في ملف <code>index.html</code> بين <code>&lt;body&gt;</code> وسكربت Bootstrap، <strong>الواحد تحت الآخر</strong>.</p>
+
+  <h3>الكود</h3>
+  <div class="demo" data-src="frag-nav" data-h="300"></div>
+  <p>انقر على «الهاتف» في النتيجة، ثم على زر الهامبرغر.</p>
+
+  <h3>الشرح سطرًا بسطر</h3>
+  <dl class="expl">
+    <dt><code>navbar navbar-expand-lg</code></dt><dd><code>navbar</code> = شريط القائمة. <code>expand-lg</code> = القائمة ممتدّة على الشاشات الكبيرة، ومخفية خلف الهامبرغر في الأصغر.</dd>
+    <dt><code>bg-white border-bottom</code></dt><dd>خلفية بيضاء وخط رفيع في الأسفل.</dd>
+    <dt><code>fixed-top</code></dt><dd>تبقى القائمة ملتصقة بالأعلى عند النزول في الصفحة.</dd>
+    <dt><code>container</code></dt><dd>يحاذي القائمة مع بقية المحتوى.</dd>
+    <dt><code>navbar-brand</code></dt><dd>اسمك أو شعارك.</dd>
+    <dt><code>navbar-toggler</code></dt><dd>زر الهامبرغر. يبقى مخفيًا على الشاشات الكبيرة.</dd>
+    <dt><code>data-bs-toggle="collapse"</code> + <code>data-bs-target="#menu"</code></dt><dd>تقولان لـ Bootstrap: «عند النقر، افتح/أغلق العنصر الذي له المعرّف <code>menu</code>». يجب أن يكون الاسمان <strong>متطابقين</strong>.</dd>
+    <dt><code>collapse navbar-collapse</code> + <code>id="menu"</code></dt><dd>الجزء القابل للطيّ من القائمة. معرّفه <code>id</code> يطابق <code>data-bs-target</code>.</dd>
+    <dt><code>navbar-nav ms-auto</code></dt><dd>قائمة الروابط. <code>ms-auto</code> (margin-start auto) تدفعها إلى الطرف المقابل للبداية.</dd>
+    <dt><code>nav-item</code> / <code>nav-link</code></dt><dd>عنصر في القائمة ورابطه.</dd>
+    <dt><code>href="#apropos"</code></dt><dd>رابط إلى قسم في الصفحة نفسها: العلامة <code>#</code> تبحث عن العنصر الذي معرّفه <code>apropos</code>.</dd>
+  </dl>
+
+  <h3>التحديات</h3>
+  <div class="defi">
+    <h4>التحدي 1: اسمك <span class="niveau">سهل</span></h4>
+    <p>ضع اسمك الحقيقي في علامة القائمة.</p>
+    <details><summary>عرض التصحيح</summary>
+      <script type="text/plain" data-kind="code">
+<a class="navbar-brand fw-bold" href="#accueil">Ton Nom</a>
+      </script>
+    </details>
+  </div>
+  <div class="defi">
+    <h4>التحدي 2: رابط إضافي <span class="niveau moyen">متوسط</span></h4>
+    <p>أضف رابط «CV» في نهاية القائمة.</p>
+    <details><summary>عرض التصحيح</summary>
+      <script type="text/plain" data-kind="code">
+<li class="nav-item"><a class="nav-link" href="#cv">CV</a></li>
+      </script>
+      <p>ضعه مع بقية عناصر <code>&lt;li&gt;</code> داخل <code>&lt;ul&gt;</code>. لن يذهب الرابط إلى أي مكان ما دام لا يوجد قسم له <code>id="cv"</code>.</p>
+    </details>
+  </div>
+  <div class="defi">
+    <h4>التحدي 3: قائمة داكنة <span class="niveau dur">أصعب</span></h4>
+    <p>اجعل القائمة بخلفية سوداء ونص فاتح (تلميح: توثيق Bootstrap 5.3 يتحدث عن <code>data-bs-theme</code>).</p>
+    <details><summary>عرض التصحيح</summary>
+      <script type="text/plain" data-kind="code">
+<nav class="navbar navbar-expand-lg bg-dark border-bottom fixed-top" data-bs-theme="dark">
+      </script>
+      <p>نستبدل <code>bg-white</code> بـ <code>bg-dark</code> ونضيف <code>data-bs-theme="dark"</code>: فيضبط Bootstrap لون النص تلقائيًا.</p>
+    </details>
+  </div>
+</section>
+
+<!-- ===================== الخطوة 3 ===================== -->
+<section class="etape" id="e3">
+  <h2><span class="num">3</span> قسم الواجهة (Hero)</h2>
+  <div class="objectif"><strong>الهدف:</strong> عنوان تعريفي كبير وزرّان ودائرة بأحرف اسمك الأولى (ستضع صورتك لاحقًا).</div>
+
+  <h3>أولًا: فهم شبكة Bootstrap</h3>
+  <p>يقسّم Bootstrap كل سطر إلى <strong>12 عمودًا</strong>. الـ <code>row</code> (السطر) يحتوي على <code>col</code> (أعمدة). إذا كتبت <code>col-md-8</code> و <code>col-md-4</code> فالمجموع 8 + 4 = 12: عمودان متجاوران. الحرفان <code>md</code> يعنيان «ابتداءً من الشاشة المتوسطة». وعلى الهاتف تتراصّ الأعمدة تلقائيًا الواحد تحت الآخر.</p>
+
+  <h3>الكود</h3>
+  <div class="demo" data-src="frag-hero" data-h="380"></div>
+
+  <p>الكلاس <code>avatar</code> غير موجود في Bootstrap: إنه من تعريفنا. نعرّفه داخل وسم <code>&lt;style&gt;</code> في <code>&lt;head&gt;</code>، بعد الـ <code>&lt;link&gt;</code> الاثنين:</p>
+  <script type="text/plain" data-kind="code">
+<style>
+  .avatar {
+    width: 160px; height: 160px;
+    background: #0f766e; color: #fff;
+    font-size: 3.5rem; font-weight: 700;
+  }
+</style>
+  </script>
+  <p>(في أمثلة هذا الدليل، هذا الـ CSS مضاف لك مسبقًا.)</p>
+
+  <h3>الشرح سطرًا بسطر</h3>
+  <dl class="expl">
+    <dt><code>id="accueil"</code></dt><dd>وجهة الرابط <code>#accueil</code> في القائمة.</dd>
+    <dt><code>bg-light pt-5</code></dt><dd>خلفية رمادية فاتحة جدًا، ومسافة في الأعلى (pt = padding-top) حتى لا يختبئ المحتوى تحت القائمة الثابتة.</dd>
+    <dt><code>container py-5 mt-4</code></dt><dd>محتوى متوسّط، مع مسافة عمودية (<code>py-5</code>) وهامش علوي (<code>mt-4</code>).</dd>
+    <dt><code>row align-items-center g-4</code></dt><dd>سطر. <code>align-items-center</code> يوسّط الأعمدة عموديًا، و<code>g-4</code> (gap) يترك مسافة بينها.</dd>
+    <dt><code>col-md-8</code> / <code>col-md-4</code></dt><dd>النص على 8 أعمدة والدائرة على 4 (المجموع 12).</dd>
+    <dt><code>display-4 fw-bold</code></dt><dd>عنوان كبير جدًا (<code>display-4</code>) بخط عريض (<code>fw-bold</code> = font-weight bold).</dd>
+    <dt><code>lead text-secondary</code></dt><dd>فقرة تمهيدية أكبر، بلون رمادي.</dd>
+    <dt><code>btn btn-primary btn-lg me-2</code></dt><dd>زر كبير ممتلئ. <code>me-2</code> (margin-end) تضع مسافة صغيرة بعده.</dd>
+    <dt><code>btn-outline-primary</code></dt><dd>زر «فارغ» بإطار فقط.</dd>
+    <dt><code>rounded-circle d-inline-flex align-items-center justify-content-center</code></dt><dd>شكل دائري، وتوسيط الأحرف داخل الدائرة (سنعود إلى «flex» لاحقًا).</dd>
+  </dl>
+
+  <h3>التحديات</h3>
+  <div class="defi">
+    <h4>التحدي 1: تغيير النِّسَب <span class="niveau">سهل</span></h4>
+    <p>أعطِ النص 7 أعمدة والدائرة 5 أعمدة.</p>
+    <details><summary>عرض التصحيح</summary>
+      <script type="text/plain" data-kind="code">
+<div class="col-md-7"> ... </div>
+<div class="col-md-5 text-center"> ... </div>
+      </script>
+    </details>
+  </div>
+  <div class="defi">
+    <h4>التحدي 2: زر السيرة الذاتية <span class="niveau moyen">متوسط</span></h4>
+    <p>أضف زرًّا ثالثًا رماديًا «Télécharger mon CV» مع أيقونة تحميل.</p>
+    <details><summary>عرض التصحيح</summary>
+      <script type="text/plain" data-kind="code">
+<a href="cv.pdf" class="btn btn-outline-secondary btn-lg mt-2">
+  <i class="bi bi-download"></i> Télécharger mon CV
+</a>
+      </script>
+      <p><code>mt-2</code> تمنع التصاق الأزرار عندما تنتقل إلى سطر جديد على الشاشات الصغيرة.</p>
+    </details>
+  </div>
+  <div class="defi">
+    <h4>التحدي 3: نص متوسّط على الهاتف <span class="niveau dur">أصعب</span></h4>
+    <p>وسّط النص على الهاتف، لكن اتركه محاذيًا لبداية السطر على الحاسوب.</p>
+    <details><summary>عرض التصحيح</summary>
+      <script type="text/plain" data-kind="code">
+<div class="col-md-8 text-center text-md-start">
+      </script>
+      <p><code>text-center</code> تُطبَّق في كل الأحجام، ثم <code>text-md-start</code> تتولى الأمر ابتداءً من الشاشة المتوسطة. القاعدة التي يجب حفظها: <strong>الكلاس بدون بادئة = للهاتف، ومع بادئة = ابتداءً من هذا الحجم</strong>.</p>
+    </details>
+  </div>
+</section>
+
+<!-- ===================== الخطوة 4 ===================== -->
+<section class="etape" id="e4">
+  <h2><span class="num">4</span> قسم «نبذة عني»</h2>
+  <div class="objectif"><strong>الهدف:</strong> تعريف قصير وواضح مع مسافات مرتبة.</div>
+
+  <h3>الكود</h3>
+  <div class="demo" data-src="frag-about" data-h="300"></div>
+
+  <h3>الشرح سطرًا بسطر</h3>
+  <dl class="expl">
+    <dt><code>&lt;section id="apropos" class="py-5"&gt;</code></dt><dd>قسم من الصفحة. يجب أن يكون الـ <code>id</code> <strong>مطابقًا تمامًا</strong> لرابط القائمة بدون <code>#</code>.</dd>
+    <dt><code>py-5</code></dt><dd>مسافة كبيرة فوق القسم وتحته. المسافات تتدرّج من <code>0</code> إلى <code>5</code>.</dd>
+    <dt><code>mb-4</code></dt><dd>هامش سفلي (margin-bottom) للعنوان.</dd>
+    <dt><code>col-lg-8</code></dt><dd>النص يشغل 8 أعمدة من 12 على الشاشات الكبيرة. الأسطر الطويلة جدًا تُتعب القارئ.</dd>
+  </dl>
+
+  <h3>التحديات</h3>
+  <div class="defi">
+    <h4>التحدي 1: كلمة بخط عريض <span class="niveau">سهل</span></h4>
+    <p>اجعل كلمة «Bootstrap» بخط عريض في إحدى الفقرات.</p>
+    <details><summary>عرض التصحيح</summary>
+      <script type="text/plain" data-kind="code">
+<p>J'apprends HTML, CSS et <strong>Bootstrap</strong> à Alger.</p>
+      </script>
+    </details>
+  </div>
+  <div class="defi">
+    <h4>التحدي 2: قائمة معلومات <span class="niveau moyen">متوسط</span></h4>
+    <p>أضف مدينتك وبريدك الإلكتروني في قائمة بدون نقاط، مع أيقونة قبل كل سطر.</p>
+    <details><summary>عرض التصحيح</summary>
+      <script type="text/plain" data-kind="code">
+<ul class="list-unstyled">
+  <li><i class="bi bi-geo-alt me-2"></i>Alger, Algérie</li>
+  <li><i class="bi bi-envelope me-2"></i>yacine@exemple.dz</li>
+</ul>
+      </script>
+      <p><code>list-unstyled</code> تزيل النقاط، و<code>me-2</code> تباعد الأيقونة عن النص.</p>
+    </details>
+  </div>
+  <div class="defi">
+    <h4>التحدي 3: نص + بطاقة «En bref» <span class="niveau dur">أصعب</span></h4>
+    <p>ضع النص في جهة (7 أعمدة) وبطاقة معلومات صغيرة في الجهة الأخرى (4 أعمدة، مع إزاحة عمود واحد). وعلى الهاتف تنزل البطاقة تحت النص مع مسافة.</p>
+    <details><summary>عرض التصحيح</summary>
+      <script type="text/plain" data-kind="code">
+<div class="row">
+  <div class="col-lg-7">
+    <p>Je m'appelle Yacine...</p>
+    <p>Mon objectif...</p>
+  </div>
+  <div class="col-lg-4 offset-lg-1 mt-4 mt-lg-0">
+    <div class="card card-body">
+      <h3 class="h6">En bref</h3>
+      <p class="mb-1">Ville : Alger</p>
+      <p class="mb-0">Disponible pour des stages</p>
+    </div>
+  </div>
+</div>
+      </script>
+      <p>7 + 1 (إزاحة) + 4 = 12. الكلاسان <code>mt-4 mt-lg-0</code>: هامش علوي على الهاتف، يُلغى على الشاشات الكبيرة.</p>
+    </details>
+  </div>
+</section>
+
+<!-- ===================== الخطوة 5 ===================== -->
+<section class="etape" id="e5">
+  <h2><span class="num">5</span> المهارات</h2>
+  <div class="objectif"><strong>الهدف:</strong> عرض تقنياتك بشارات (badges) وأشرطة تقدّم.</div>
+
+  <h3>الكود</h3>
+  <div class="demo" data-src="frag-skills" data-h="420"></div>
+
+  <h3>الشرح سطرًا بسطر</h3>
+  <dl class="expl">
+    <dt><code>bg-light</code></dt><dd>خلفية رمادية فاتحة: نتناوب بين خلفية بيضاء ورمادية للفصل بين الأقسام.</dd>
+    <dt><code>badge text-bg-primary</code></dt><dd>بطاقة صغيرة ملوّنة. <code>text-bg-primary</code> تضبط لون الخلفية <em>ولون النص</em> معًا.</dd>
+    <dt><code>fs-6</code></dt><dd>حجم الخط (font-size): <code>fs-1</code> هو الأكبر و<code>fs-6</code> الأصغر.</dd>
+    <dt><code>me-1 mb-1</code></dt><dd>مسافات صغيرة بعد الشارة وتحتها حتى لا تلتصق الشارات.</dd>
+    <dt><code>progress</code> + <code>progress-bar</code></dt><dd>الإطار الرمادي للشريط، والجزء الملوّن داخله.</dd>
+    <dt><code>style="width: 80%"</code></dt><dd>مستوى الشريط. هذا هو المكان الوحيد الذي نكتب فيه CSS «داخل السطر».</dd>
+    <dt><code>role="progressbar"</code> + <code>aria-...</code></dt><dd>معلومات لقارئات الشاشة (إتاحة الوصول). نحتفظ بها دائمًا.</dd>
+  </dl>
+
+  <h3>التحديات</h3>
+  <div class="defi">
+    <h4>التحدي 1: شارة إضافية <span class="niveau">سهل</span></h4>
+    <p>أضف شارة «React» بلون رمادي.</p>
+    <details><summary>عرض التصحيح</summary>
+      <script type="text/plain" data-kind="code">
+<span class="badge text-bg-secondary fs-6 me-1 mb-1">React</span>
+      </script>
+    </details>
+  </div>
+  <div class="defi">
+    <h4>التحدي 2: شريط Git بنسبة 60% <span class="niveau moyen">متوسط</span></h4>
+    <details><summary>عرض التصحيح</summary>
+      <script type="text/plain" data-kind="code">
+<p class="mb-1">Git</p>
+<div class="progress mb-3" role="progressbar" aria-label="Git" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
+  <div class="progress-bar" style="width: 60%"></div>
+</div>
+      </script>
+      <p>تذكّر تغيير <code>style</code> <strong>و</strong> <code>aria-valuenow</code> معًا.</p>
+    </details>
+  </div>
+  <div class="defi">
+    <h4>التحدي 3: شريط مخطَّط ومتحرّك <span class="niveau dur">أصعب</span></h4>
+    <p>اجعل شريط JavaScript مخطّطًا بخطوط متحركة (ابحث عن <em>Bootstrap progress striped</em>).</p>
+    <details><summary>عرض التصحيح</summary>
+      <script type="text/plain" data-kind="code">
+<div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 45%"></div>
+      </script>
+    </details>
+  </div>
+</section>
+
+<!-- ===================== الخطوة 6 ===================== -->
+<section class="etape" id="e6">
+  <h2><span class="num">6</span> المشاريع (البطاقات)</h2>
+  <div class="objectif"><strong>الهدف:</strong> ثلاث بطاقات بالارتفاع نفسه: بطاقة واحدة في كل سطر على الهاتف، و3 على الحاسوب.</div>
+
+  <h3>الكود</h3>
+  <div class="demo" data-src="frag-projects" data-h="520"></div>
+  <p>الكلاس <code>projet-img</code> من تعريفنا أيضًا. أضفه إلى وسم <code>&lt;style&gt;</code>:</p>
+  <script type="text/plain" data-kind="code">
+.projet-img {
+  height: 140px;
+  color: #fff; font-size: 2.5rem;
+}
+  </script>
+
+  <h3>الشرح سطرًا بسطر</h3>
+  <dl class="expl">
+    <dt><code>row row-cols-1 row-cols-md-3 g-4</code></dt><dd>شبكة «تلقائية»: <code>row-cols-1</code> = بطاقة واحدة في السطر على الهاتف، و<code>row-cols-md-3</code> = 3 بطاقات ابتداءً من الشاشة المتوسطة. لا حاجة لحساب <code>col-md-4</code>.</dd>
+    <dt><code>&lt;div class="col"&gt;</code></dt><dd>خانة من الشبكة. كل بطاقة توضع في <code>col</code> خاص بها.</dd>
+    <dt><code>card h-100</code></dt><dd>البطاقة. <code>h-100</code> = ارتفاع 100% من الخانة: فتتساوى ارتفاعات البطاقات حتى لو اختلف طول النص.</dd>
+    <dt><code>d-flex align-items-center justify-content-center</code></dt><dd>توسّط الأيقونة في وسط الكتلة الملوّنة، طولًا وعرضًا.</dd>
+    <dt><code>style="background:#0f766e;"</code></dt><dd>لون خلفية مختلف لكل مشروع. عندما تصبح لديك لقطات شاشة حقيقية، استبدل هذه الكتلة بـ <code>&lt;img src="capture.png" class="card-img-top" alt="..."&gt;</code>.</dd>
+    <dt><code>card-body</code>، <code>card-title h5</code>، <code>card-text</code></dt><dd>محتوى البطاقة، والعنوان (بحجم <code>h5</code>)، والنص.</dd>
+    <dt><code>badge text-bg-secondary</code></dt><dd>التقنيات المستعملة على شكل بطاقات رمادية صغيرة.</dd>
+    <dt><code>card-footer bg-white border-0 pb-3</code></dt><dd>أسفل البطاقة، بدون خلفية رمادية ولا خط، لوضع الزر.</dd>
+  </dl>
+
+  <h3>التحديات</h3>
+  <div class="defi">
+    <h4>التحدي 1: مشروع رابع <span class="niveau">سهل</span></h4>
+    <p>أضف بطاقة «Mini boutique»: كتالوج فيه قميص بسعر 2500 دج وقبعة بسعر 1200 دج.</p>
+    <details><summary>عرض التصحيح</summary>
+      <script type="text/plain" data-kind="code">
+<div class="col">
+  <div class="card h-100">
+    <div class="projet-img d-flex align-items-center justify-content-center" style="background:#9f1239;">
+      <i class="bi bi-bag"></i>
+    </div>
+    <div class="card-body">
+      <h3 class="card-title h5">Mini boutique</h3>
+      <p class="card-text">Catalogue : t-shirt à 2 500 DA, casquette à 1 200 DA.</p>
+      <span class="badge text-bg-secondary">JavaScript</span>
+    </div>
+    <div class="card-footer bg-white border-0 pb-3">
+      <a href="#" class="btn btn-outline-primary btn-sm">Voir le projet</a>
+    </div>
+  </div>
+</div>
+      </script>
+      <p>انسخ كتلة <code>col</code> موجودة ثم غيّر النصوص.</p>
+    </details>
+  </div>
+  <div class="defi">
+    <h4>التحدي 2: شبكة مناسبة لـ4 بطاقات <span class="niveau moyen">متوسط</span></h4>
+    <p>اعرض بطاقة واحدة في السطر على الهاتف، و2 على الشاشة المتوسطة، و4 على الشاشة الكبيرة جدًا.</p>
+    <details><summary>عرض التصحيح</summary>
+      <script type="text/plain" data-kind="code">
+<div class="row row-cols-1 row-cols-md-2 row-cols-xl-4 g-4">
+      </script>
+    </details>
+  </div>
+  <div class="defi">
+    <h4>التحدي 3: رابط GitHub <span class="niveau dur">أصعب</span></h4>
+    <p>اصنع زرّ «Code source» بأيقونة GitHub يفتح مستودعك في <strong>تبويب جديد</strong>.</p>
+    <details><summary>عرض التصحيح</summary>
+      <script type="text/plain" data-kind="code">
+<a href="https://github.com/ton-nom/ton-projet" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm">
+  <i class="bi bi-github"></i> Code source
+</a>
+      </script>
+      <p><code>target="_blank"</code> تفتح تبويبًا جديدًا؛ و<code>rel="noopener noreferrer"</code> تحمي موقعك (عادة أمان جيدة).</p>
+    </details>
+  </div>
+</section>
+
+<!-- ===================== الخطوة 7 ===================== -->
+<section class="etape" id="e7">
+  <h2><span class="num">7</span> نموذج التواصل</h2>
+  <div class="objectif"><strong>الهدف:</strong> نموذج أنيق، وبجانبه بيانات الاتصال بك.</div>
+
+  <h3>الكود</h3>
+  <div class="demo" data-src="frag-contact" data-h="520"></div>
+  <p>في هذا المثال تم تعطيل الإرسال حتى لا تُفتح رسائلك. وفي موقعك الحقيقي سيعمل.</p>
+
+  <h3>الشرح سطرًا بسطر</h3>
+  <dl class="expl">
+    <dt><code>&lt;form action="mailto:..."&gt;</code></dt><dd>عند الضغط على «إرسال»، يُفتح برنامج البريد لدى الزائر والرسالة جاهزة. الطريقة بسيطة، لكنها لا تعمل إلا إذا كان لدى الزائر برنامج بريد مُعَدّ. لاحقًا يمكنك استعمال خدمة مثل Formspree.</dd>
+    <dt><code>&lt;label for="nom"&gt;</code> + <code>id="nom"</code></dt><dd>يجب أن يتطابق <code>for</code> في الـ label مع <code>id</code> الحقل: فالنقر على النص يفعّل الحقل.</dd>
+    <dt><code>form-label</code> / <code>form-control</code></dt><dd>أنماط Bootstrap للنص وللحقول (عرض 100% وحواف مدوّرة).</dd>
+    <dt><code>mb-3</code></dt><dd>مسافة بين حقلين.</dd>
+    <dt><code>type="email"</code></dt><dd>يتحقق المتصفح وحده من وجود @.</dd>
+    <dt><code>required</code></dt><dd>لا يمكن ترك الحقل فارغًا.</dd>
+    <dt><code>&lt;textarea rows="4"&gt;</code></dt><dd>منطقة نص من 4 أسطر.</dd>
+    <dt><code>col-lg-5 offset-lg-1 mt-4 mt-lg-0</code></dt><dd>عمود بيانات الاتصال، مُزاح بعمود واحد على الشاشات الكبيرة، مع هامش علوي على الهاتف فقط.</dd>
+  </dl>
+
+  <h3>التحديات</h3>
+  <div class="defi">
+    <h4>التحدي 1: حقل الهاتف <span class="niveau">سهل</span></h4>
+    <details><summary>عرض التصحيح</summary>
+      <script type="text/plain" data-kind="code">
+<div class="mb-3">
+  <label for="tel" class="form-label">Téléphone</label>
+  <input type="tel" class="form-control" id="tel" name="tel" placeholder="0555 00 00 00">
+</div>
+      </script>
+    </details>
+  </div>
+  <div class="defi">
+    <h4>التحدي 2: الاسم والبريد جنبًا إلى جنب <span class="niveau moyen">متوسط</span></h4>
+    <p>على الحاسوب، ضع هذين الحقلين في السطر نفسه. وعلى الهاتف يتراصّان.</p>
+    <details><summary>عرض التصحيح</summary>
+      <script type="text/plain" data-kind="code">
+<div class="row">
+  <div class="col-md-6 mb-3">
+    <label for="nom" class="form-label">Nom</label>
+    <input type="text" class="form-control" id="nom" name="nom" required>
+  </div>
+  <div class="col-md-6 mb-3">
+    <label for="email" class="form-label">Email</label>
+    <input type="email" class="form-control" id="email" name="email" required>
+  </div>
+</div>
+      </script>
+    </details>
+  </div>
+  <div class="defi">
+    <h4>التحدي 3: قائمة منسدلة <span class="niveau dur">أصعب</span></h4>
+    <p>أضف «Type de projet» مع الخيارات: Site vitrine, Boutique en ligne, Autre.</p>
+    <details><summary>عرض التصحيح</summary>
+      <script type="text/plain" data-kind="code">
+<div class="mb-3">
+  <label for="type" class="form-label">Type de projet</label>
+  <select class="form-select" id="type" name="type">
+    <option>Site vitrine</option>
+    <option>Boutique en ligne</option>
+    <option>Autre</option>
+  </select>
+</div>
+      </script>
+      <p>انتبه: في القائمة المنسدلة الكلاس هو <code>form-select</code> وليس <code>form-control</code>.</p>
+    </details>
+  </div>
+</section>
+
+<!-- ===================== الخطوة 8 ===================== -->
+<section class="etape" id="e8">
+  <h2><span class="num">8</span> التذييل واختبار الهاتف</h2>
+  <div class="objectif"><strong>الهدف:</strong> إنهاء الصفحة والتأكد من أنها تتكيّف مع كل الشاشات.</div>
+
+  <h3>الكود</h3>
+  <div class="demo" data-src="frag-footer" data-h="200"></div>
+
+  <h3>الشرح سطرًا بسطر</h3>
+  <dl class="expl">
+    <dt><code>py-4 text-center</code></dt><dd>مسافة عمودية ونص في الوسط.</dd>
+    <dt><code>text-secondary border-top</code></dt><dd>نص رمادي وخط في الأعلى للفصل عن بقية الصفحة.</dd>
+    <dt><code>&lt;small&gt;</code></dt><dd>نص أصغر.</dd>
+    <dt><code>&lt;span id="annee"&gt;</code></dt><dd>مكان سنملؤه بـ JavaScript في التحدي 1.</dd>
+  </dl>
+
+  <div class="note"><strong>اختبار الهاتف بدون هاتف:</strong> في Chrome اضغط <kbd>F12</kbd> ثم على أيقونة «الهاتف/اللوحي» (أو <kbd>Ctrl + Shift + M</kbd>). اختر جهازًا وتأكد أن شيئًا لا يخرج عن الشاشة، وأن قائمة الهامبرغر تُفتح، وأن البطاقات تتراصّ.</div>
+
+  <h3>التحديات</h3>
+  <div class="defi">
+    <h4>التحدي 1: السنة تلقائيًا <span class="niveau">سهل</span></h4>
+    <p>اجعل السنة الحالية تظهر دون أن تعدّلها يدويًا أبدًا (JavaScript).</p>
+    <details><summary>عرض التصحيح</summary>
+      <script type="text/plain" data-kind="code">
+<!-- يوضع قبل </body> مباشرة، بعد سكربت Bootstrap -->
+<script>
+  document.getElementById('annee').textContent = new Date().getFullYear();
+<\/script>
+      </script>
+      <p><code>getElementById('annee')</code> تجد المكان، و<code>new Date().getFullYear()</code> تعطي السنة، و<code>textContent</code> تكتب داخله.</p>
+    </details>
+  </div>
+  <div class="defi">
+    <h4>التحدي 2: أيقونات الشبكات <span class="niveau moyen">متوسط</span></h4>
+    <p>أضف أيقونتين قابلتين للنقر (GitHub و LinkedIn) في التذييل.</p>
+    <details><summary>عرض التصحيح</summary>
+      <script type="text/plain" data-kind="code">
+<div class="mb-2 fs-4">
+  <a href="https://github.com/ton-nom" class="text-secondary me-3" aria-label="GitHub"><i class="bi bi-github"></i></a>
+  <a href="https://linkedin.com/in/ton-nom" class="text-secondary" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+</div>
+      </script>
+      <p>بما أن الأيقونة لا تحمل نصًا، فإن <code>aria-label</code> تخبر قارئات الشاشة إلى أين يؤدي الرابط.</p>
+    </details>
+  </div>
+  <div class="defi">
+    <h4>التحدي 3: زر «العودة إلى الأعلى» <span class="niveau dur">أصعب</span></h4>
+    <p>زر دائري ثابت في زاوية الشاشة السفلية، يعيد إلى أعلى الصفحة.</p>
+    <details><summary>عرض التصحيح</summary>
+      <script type="text/plain" data-kind="code">
+<a href="#accueil" class="btn btn-primary rounded-circle position-fixed bottom-0 end-0 m-3" aria-label="Retour en haut">
+  <i class="bi bi-arrow-up"></i>
+</a>
+      </script>
+      <p><code>position-fixed bottom-0 end-0</code> تلصق الزر في الزاوية السفلية، و<code>m-3</code> تبعده عن الحافة.</p>
+    </details>
+  </div>
+</section>
+
+<!-- ===================== الخطوة 9 ===================== -->
+<section class="etape" id="e9">
+  <h2><span class="num">9</span> التجميع النهائي والتخصيص</h2>
+  <div class="objectif"><strong>الهدف:</strong> جمع كل الأجزاء في ملف واحد وإضفاء طابعك الشخصي عليه.</div>
+
+  <p>هذه هي الصفحة الكاملة: الهيكل (خطوة 1) + القائمة (2) + الواجهة (3) + نبذة عني (4) + المهارات (5) + المشاريع (6) + التواصل (7) + التذييل (8) + الـ CSS الخاص بنا داخل <code>&lt;style&gt;</code>. يمكنك تعديلها هنا ثم تحميلها.</p>
+
+  <div class="demo" data-src="final" data-mode="full" data-h="640"></div>
+  <p><button class="btn-main" id="dl">تحميل index.html</button></p>
+
+  <h3>الـ CSS الخاص بنا، مشروحًا</h3>
+  <dl class="expl">
+    <dt><code>:root { --bs-primary: ... }</code></dt><dd>تغيّر اللون الرئيسي لـ Bootstrap (الشارات والأشرطة والنصوص...).</dd>
+    <dt><code>.btn-primary { ... }</code>، <code>.btn-outline-primary { ... }</code></dt><dd>لا يربط Bootstrap الأزرار بهذا المتغيّر، لذلك نعطي اللون للأزرار أيضًا، بما في ذلك عند تمرير الفأرة (hover).</dd>
+    <dt><code>html { scroll-behavior: smooth }</code></dt><dd>عند النقر على رابط في القائمة تنزلق الصفحة بنعومة.</dd>
+    <dt><code>section { scroll-margin-top: 70px }</code></dt><dd>تمنع القائمة الثابتة من إخفاء عنوان القسم الذي نصل إليه.</dd>
+  </dl>
+
+  <h3>التحديات النهائية</h3>
+  <div class="defi">
+    <h4>التحدي 1: لونك أنت <span class="niveau">سهل</span></h4>
+    <p>استبدل الأخضر بالأزرق في الموقع كله بعملية واحدة.</p>
+    <details><summary>عرض التصحيح</summary>
+      <p>في VS Code اضغط <kbd>Ctrl + H</kbd> (بحث/استبدال) ونفّذ:</p>
+      <script type="text/plain" data-kind="code">
+#0f766e  →  #1d4ed8     (اللون الرئيسي)
+#0b5f59  →  #1e40af     (اللون عند تمرير الفأرة)
+15, 118, 110  →  29, 78, 216     (اللون نفسه بصيغة RGB)
+      </script>
+      <p>يمكنك أيضًا تغيير ألوان كتل المشاريع (<code>style="background:..."</code>).</p>
+    </details>
+  </div>
+  <div class="defi">
+    <h4>التحدي 2: صورتك الحقيقية <span class="niveau moyen">متوسط</span></h4>
+    <p>استبدل دائرة الأحرف بصورتك، ضعها في المجلد نفسه الذي فيه <code>index.html</code>.</p>
+    <details><summary>عرض التصحيح</summary>
+      <script type="text/plain" data-kind="code">
+<img src="photo.jpg" alt="Photo de Yacine" class="rounded-circle"
+     width="160" height="160" style="object-fit: cover;">
+      </script>
+      <p>ضعها مكان <code>&lt;div class="avatar ..."&gt;YB&lt;/div&gt;</code>. <code>object-fit: cover</code> تمنع تشوّه الصورة. والنص <code>alt</code> يصف الصورة (إتاحة الوصول).</p>
+    </details>
+  </div>
+  <div class="defi">
+    <h4>التحدي 3: نشر الموقع على الإنترنت <span class="niveau dur">أصعب</span></h4>
+    <p>انشر البورتفوليو مجانًا لترسل الرابط إلى زبائنك وأصحاب العمل.</p>
+    <details><summary>عرض التصحيح</summary>
+      <ol>
+        <li>تأكد أن اسم الملف هو <code>index.html</code> وأن الصورة في المجلد نفسه.</li>
+        <li><strong>الطريقة السهلة:</strong> Netlify Drop. تسحب مجلد <code>portfolio</code> إلى الصفحة فتحصل على رابط.</li>
+        <li><strong>طريقة المطوّرين:</strong> أنشئ مستودعًا على GitHub، وارفع ملفاتك إليه، ثم فعّل GitHub Pages من إعدادات المستودع.</li>
+        <li>جرّب الرابط على هاتفك قبل مشاركته.</li>
+      </ol>
+    </details>
+  </div>
+  <div class="defi">
+    <h4>تحدٍّ إضافي: موقع بالعربية من اليمين إلى اليسار <span class="niveau dur">أصعب</span></h4>
+    <p>حوّل الموقع كله إلى العربية. يحتاج ذلك إلى تغييرين في <code>&lt;head&gt;</code> ثم ترجمة النصوص.</p>
+    <details><summary>عرض التصحيح</summary>
+      <script type="text/plain" data-kind="code">
+<html lang="ar" dir="rtl">
+...
+<!-- نستبدل ملف Bootstrap العادي بنسخة RTL -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+      </script>
+      <p><code>dir="rtl"</code> تجعل الصفحة من اليمين إلى اليسار، ونسخة <code>bootstrap.rtl.min.css</code> تقلب الأعمدة والمحاذاة تلقائيًا. هذا هو سبب تسمية Bootstrap لكلاساته <code>ms</code> و<code>me</code> و<code>text-start</code> (البداية والنهاية) بدل اليسار واليمين: تنقلب معها دون أن تغيّر شيئًا. بعدها ترجم نصوص الموقع إلى العربية.</p>
+    </details>
+  </div>
+
+  <div class="note"><strong>مبروك!</strong> لقد بنيت موقعًا كاملًا. الخطوة التالية: استبدل النصوص التجريبية بمشاريعك الحقيقية مع لقطات الشاشة.</div>
+</section>
+
+<!-- ===================== مرجع سريع ===================== -->
+<section class="etape" id="aide">
+  <h2>مرجع سريع للكلاسات المستعملة</h2>
+  <table>
+    <tr><th>العائلة</th><th>الكلاسات</th><th>الدور</th></tr>
+    <tr><td>المسافات</td><td><code>mb-3</code> <code>mt-4</code> <code>me-2</code> <code>ms-auto</code> <code>py-5</code> <code>pt-5</code></td><td>m = هامش (خارجي)، p = حشو (داخلي). t و b و s و e = أعلى، أسفل، بداية، نهاية. x و y = أفقي، عمودي. القيم من 0 إلى 5.</td></tr>
+    <tr><td>النص</td><td><code>fw-bold</code> <code>text-center</code> <code>text-secondary</code> <code>display-4</code> <code>lead</code> <code>fs-6</code></td><td>عريض، محاذاة، لون رمادي، عناوين كبيرة، نص تمهيدي، الحجم.</td></tr>
+    <tr><td>الألوان</td><td><code>bg-light</code> <code>bg-white</code> <code>text-primary</code> <code>text-bg-primary</code></td><td>ألوان الخلفيات والنصوص.</td></tr>
+    <tr><td>الشبكة</td><td><code>container</code> <code>row</code> <code>col-md-6</code> <code>row-cols-md-3</code> <code>g-4</code> <code>offset-lg-1</code></td><td>تخطيط الصفحة على 12 عمودًا.</td></tr>
+    <tr><td>Flex</td><td><code>d-flex</code> <code>align-items-center</code> <code>justify-content-center</code></td><td>توسيط العناصر ومحاذاتها.</td></tr>
+    <tr><td>المكوّنات</td><td><code>navbar</code> <code>btn</code> <code>card</code> <code>badge</code> <code>progress</code> <code>form-control</code></td><td>القائمة، الأزرار، البطاقات، الشارات، الأشرطة، الحقول.</td></tr>
+    <tr><td>أحجام الشاشات</td><td>(لا شيء) · <code>sm</code> · <code>md</code> · <code>lg</code> · <code>xl</code></td><td>الهاتف · من 576px · من 768px · من 992px · من 1200px. <code>col-md-6</code> = «6 أعمدة ابتداءً من 768px».</td></tr>
+  </table>
+  <p>التوثيق الرسمي مع كل الأمثلة: <strong>getbootstrap.com/docs/5.3</strong>. والأيقونات: <strong>icons.getbootstrap.com</strong>.</p>
+</section>
+
+<!-- ===================== الأخطاء ===================== -->
+<section class="etape" id="erreurs">
+  <h2>الأخطاء الست الشائعة (وكيف تصلحها)</h2>
+  <table>
+    <tr><th>العَرَض</th><th>السبب المحتمل</th><th>الحل</th></tr>
+    <tr><td>الموقع صغير جدًا على الهاتف</td><td>نُسي سطر <code>viewport</code></td><td>أعد وسم <code>&lt;meta name="viewport" ...&gt;</code> إلى <code>&lt;head&gt;</code>.</td></tr>
+    <tr><td>الهامبرغر لا يُفتح</td><td>نُسي سكربت Bootstrap، أو <code>data-bs-target</code> ≠ <code>id</code></td><td>تحقق من <code>&lt;script&gt;</code> في أسفل الصفحة ومن أن <code>#menu</code> يطابق <code>id="menu"</code>.</td></tr>
+    <tr><td>الأعمدة غير متراصّة بشكل صحيح</td><td><code>col</code> موضوعة خارج <code>row</code></td><td>البنية: <code>container</code> &gt; <code>row</code> &gt; <code>col</code>.</td></tr>
+    <tr><td>لا تظهر أي أنماط Bootstrap</td><td>لا يوجد اتصال، أو خطأ في رابط <code>&lt;link&gt;</code></td><td>تحقق من الإنترنت وانسخ الرابط كما هو تمامًا.</td></tr>
+    <tr><td>رابط في القائمة لا يفعل شيئًا</td><td><code>href="#projets"</code> ≠ <code>id="projets"</code></td><td>الإملاء نفسه وحالة الأحرف نفسها (الكبيرة والصغيرة).</td></tr>
+    <tr><td>تعديلي لا يظهر</td><td>لم يُحفظ الملف أو لم تُحدَّث الصفحة</td><td><kbd>Ctrl + S</kbd> ثم <kbd>F5</kbd> (أو <kbd>Ctrl + F5</kbd>).</td></tr>
+  </table>
+</section>
+
+<footer class="fin">دليل خطوة بخطوة · بورتفوليو Bootstrap للمبتدئين</footer>
+</div>
+
+<!-- ===================== مصادر الكود (نص خام) ===================== -->
+<script type="text/plain" id="frag-skeleton">
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mon Portfolio</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- أيقونات Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <div class="container py-5">
+    <h1 class="text-primary">Salam Bootstrap !</h1>
+    <p class="lead">Si ce texte est bien mis en forme, Bootstrap est chargé.</p>
+    <button class="btn btn-primary">Mon premier bouton</button>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"><\/script>
+</body>
+</html>
+</script>
+
+<script type="text/plain" id="frag-nav">
+<!-- القائمة : fixed-top = تبقى في الأعلى عند النزول -->
+<nav class="navbar navbar-expand-lg bg-white border-bottom fixed-top">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="#accueil">Yacine Benali</a>
+
+    <!-- زر الهامبرغر (يظهر على الهاتف) -->
+    <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse" data-bs-target="#menu"
+            aria-controls="menu" aria-expanded="false" aria-label="Ouvrir le menu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="menu">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#apropos">À propos</a></li>
+        <li class="nav-item"><a class="nav-link" href="#competences">Compétences</a></li>
+        <li class="nav-item"><a class="nav-link" href="#projets">Projets</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+</script>
+
+<script type="text/plain" id="frag-hero">
+<!-- الواجهة -->
+<header id="accueil" class="bg-light pt-5">
+  <div class="container py-5 mt-4">
+    <div class="row align-items-center g-4">
+
+      <!-- عمود النص -->
+      <div class="col-md-8">
+        <h1 class="display-4 fw-bold">Salam, je suis Yacine Benali.</h1>
+        <p class="lead text-secondary">
+          Développeur web débutant à Alger. Je crée des sites simples,
+          rapides et agréables à utiliser.
+        </p>
+        <a href="#projets" class="btn btn-primary btn-lg me-2">Voir mes projets</a>
+        <a href="#contact" class="btn btn-outline-primary btn-lg">Me contacter</a>
+      </div>
+
+      <!-- عمود «الصورة» : أحرف الاسم في الوقت الحالي -->
+      <div class="col-md-4 text-center">
+        <div class="avatar rounded-circle d-inline-flex align-items-center justify-content-center">
+          YB
+        </div>
+      </div>
+
+    </div>
+  </div>
+</header>
+</script>
+
+<script type="text/plain" id="frag-about">
+<!-- نبذة عني -->
+<section id="apropos" class="py-5">
+  <div class="container">
+    <h2 class="mb-4">À propos</h2>
+    <div class="row">
+      <div class="col-lg-8">
+        <p>
+          Je m'appelle Yacine, j'ai 22 ans et j'apprends le développement web
+          à Alger. J'aime transformer une idée en page qui fonctionne.
+        </p>
+        <p>
+          Mon objectif : construire des sites pour les commerces et les
+          associations de chez nous, avec des outils modernes.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+</script>
+
+<script type="text/plain" id="frag-skills">
+<!-- المهارات -->
+<section id="competences" class="py-5 bg-light">
+  <div class="container">
+    <h2 class="mb-4">Compétences</h2>
+
+    <!-- الشارات -->
+    <div class="mb-4">
+      <span class="badge text-bg-primary fs-6 me-1 mb-1">HTML</span>
+      <span class="badge text-bg-primary fs-6 me-1 mb-1">CSS</span>
+      <span class="badge text-bg-primary fs-6 me-1 mb-1">Bootstrap</span>
+      <span class="badge text-bg-primary fs-6 me-1 mb-1">JavaScript</span>
+      <span class="badge text-bg-primary fs-6 me-1 mb-1">Git</span>
+    </div>
+
+    <!-- أشرطة التقدّم : غيّر width لتغيير المستوى -->
+    <div class="row">
+      <div class="col-md-6">
+        <p class="mb-1">HTML</p>
+        <div class="progress mb-3" role="progressbar" aria-label="HTML" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
+          <div class="progress-bar" style="width: 80%"></div>
+        </div>
+
+        <p class="mb-1">CSS / Bootstrap</p>
+        <div class="progress mb-3" role="progressbar" aria-label="CSS et Bootstrap" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
+          <div class="progress-bar" style="width: 70%"></div>
+        </div>
+
+        <p class="mb-1">JavaScript</p>
+        <div class="progress mb-3" role="progressbar" aria-label="JavaScript" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100">
+          <div class="progress-bar" style="width: 45%"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</script>
+
+<script type="text/plain" id="frag-projects">
+<!-- المشاريع -->
+<section id="projets" class="py-5">
+  <div class="container">
+    <h2 class="mb-4">Projets</h2>
+
+    <!-- بطاقة في السطر على الهاتف، و3 على الشاشة المتوسطة وما فوقها -->
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+
+      <!-- المشروع 1 : انسخ هذه الكتلة لإضافة مشروع -->
+      <div class="col">
+        <div class="card h-100">
+          <div class="projet-img d-flex align-items-center justify-content-center" style="background:#0f766e;">
+            <i class="bi bi-shop"></i>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title h5">Vitrine pâtisserie</h3>
+            <p class="card-text">Site d'une pâtisserie de Sétif : menu, photos et horaires.</p>
+            <span class="badge text-bg-secondary">HTML</span>
+            <span class="badge text-bg-secondary">Bootstrap</span>
+          </div>
+          <div class="card-footer bg-white border-0 pb-3">
+            <a href="#" class="btn btn-outline-primary btn-sm">Voir le projet</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- المشروع 2 -->
+      <div class="col">
+        <div class="card h-100">
+          <div class="projet-img d-flex align-items-center justify-content-center" style="background:#b45309;">
+            <i class="bi bi-currency-exchange"></i>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title h5">Convertisseur DZD</h3>
+            <p class="card-text">Convertit des euros en dinars algériens (DA) selon le taux saisi.</p>
+            <span class="badge text-bg-secondary">JavaScript</span>
+            <span class="badge text-bg-secondary">CSS</span>
+          </div>
+          <div class="card-footer bg-white border-0 pb-3">
+            <a href="#" class="btn btn-outline-primary btn-sm">Voir le projet</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- المشروع 3 -->
+      <div class="col">
+        <div class="card h-100">
+          <div class="projet-img d-flex align-items-center justify-content-center" style="background:#4338ca;">
+            <i class="bi bi-list-check"></i>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title h5">Liste de tâches</h3>
+            <p class="card-text">Une application pour ajouter, cocher et supprimer des tâches.</p>
+            <span class="badge text-bg-secondary">JavaScript</span>
+          </div>
+          <div class="card-footer bg-white border-0 pb-3">
+            <a href="#" class="btn btn-outline-primary btn-sm">Voir le projet</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+</script>
+
+<script type="text/plain" id="frag-contact">
+<!-- التواصل -->
+<section id="contact" class="py-5 bg-light">
+  <div class="container">
+    <h2 class="mb-4">Contact</h2>
+    <div class="row">
+
+      <div class="col-lg-6">
+        <!-- غيّر العنوان : mailto يفتح برنامج البريد لدى الزائر -->
+        <form action="mailto:yacine@exemple.dz" method="post" enctype="text/plain">
+          <div class="mb-3">
+            <label for="nom" class="form-label">Nom</label>
+            <input type="text" class="form-control" id="nom" name="nom" required>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+          </div>
+          <div class="mb-3">
+            <label for="message" class="form-label">Message</label>
+            <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Envoyer le message</button>
+        </form>
+      </div>
+
+      <div class="col-lg-5 offset-lg-1 mt-4 mt-lg-0">
+        <p><i class="bi bi-geo-alt me-2"></i>Alger, Algérie</p>
+        <p><i class="bi bi-envelope me-2"></i>yacine@exemple.dz</p>
+        <p><i class="bi bi-github me-2"></i><a href="#" class="text-decoration-none">github.com/ton-nom</a></p>
+        <p><i class="bi bi-linkedin me-2"></i><a href="#" class="text-decoration-none">linkedin.com/in/ton-nom</a></p>
+      </div>
+
+    </div>
+  </div>
+</section>
+</script>
+
+<script type="text/plain" id="frag-footer">
+<!-- التذييل -->
+<footer class="py-4 text-center text-secondary border-top">
+  <div class="container">
+    <small>© <span id="annee">2026</span> Yacine Benali. Fait avec Bootstrap à Alger.</small>
+  </div>
+</footer>
+</script>
+
+<script>
+(function () {
+  var CLOSE = '</scr' + 'ipt>';
+  var BS_CSS = 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css';
+  var ICONS  = 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css';
+  var BS_JS  = 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js';
+
+  var CSS_CUSTOM = [
+    ':root {',
+    '  --bs-primary: #0f766e;',
+    '  --bs-primary-rgb: 15, 118, 110;',
+    '}',
+    '.btn-primary {',
+    '  --bs-btn-bg: #0f766e;',
+    '  --bs-btn-border-color: #0f766e;',
+    '  --bs-btn-hover-bg: #0b5f59;',
+    '  --bs-btn-hover-border-color: #0b5f59;',
+    '  --bs-btn-active-bg: #0b5f59;',
+    '  --bs-btn-active-border-color: #0b5f59;',
+    '}',
+    '.btn-outline-primary {',
+    '  --bs-btn-color: #0f766e;',
+    '  --bs-btn-border-color: #0f766e;',
+    '  --bs-btn-hover-bg: #0f766e;',
+    '  --bs-btn-hover-border-color: #0f766e;',
+    '  --bs-btn-active-bg: #0f766e;',
+    '  --bs-btn-active-border-color: #0f766e;',
+    '}',
+    'html { scroll-behavior: smooth; }',
+    'section { scroll-margin-top: 70px; }',
+    '.avatar {',
+    '  width: 160px; height: 160px;',
+    '  background: #0f766e; color: #fff;',
+    '  font-size: 3.5rem; font-weight: 700;',
+    '}',
+    '.projet-img {',
+    '  height: 140px;',
+    '  color: #fff; font-size: 2.5rem;',
+    '}'
+  ].join('\n');
+
+  function unesc(t) { return t.split('<\\/script>').join(CLOSE); }
+  function src(id) { return unesc(document.getElementById(id).textContent).replace(/^\s*\n/, '').replace(/\s+$/, ''); }
+
+  function buildFinal() {
+    var css = CSS_CUSTOM.split('\n').map(function (l) { return '    ' + l; }).join('\n');
+    return [
+      '<!DOCTYPE html>',
+      '<html lang="fr">',
+      '<head>',
+      '  <meta charset="UTF-8">',
+      '  <meta name="viewport" content="width=device-width, initial-scale=1">',
+      '  <title>Portfolio de Yacine Benali</title>',
+      '',
+      '  <!-- Bootstrap CSS -->',
+      '  <link href="' + BS_CSS + '" rel="stylesheet">',
+      '  <!-- أيقونات Bootstrap -->',
+      '  <link href="' + ICONS + '" rel="stylesheet">',
+      '',
+      '  <!-- الـ CSS الخاص بنا -->',
+      '  <style>',
+      css,
+      '  </style>',
+      '</head>',
+      '<body>',
+      '',
+      src('frag-nav'), '',
+      src('frag-hero'), '',
+      src('frag-about'), '',
+      src('frag-skills'), '',
+      src('frag-projects'), '',
+      src('frag-contact'), '',
+      src('frag-footer'), '',
+      '  <!-- Bootstrap JS -->',
+      '  <script src="' + BS_JS + '">' + CLOSE,
+      '  <!-- سنة التذييل تتحدّث وحدها -->',
+      '  <script>document.getElementById("annee").textContent = new Date().getFullYear();' + CLOSE,
+      '</body>',
+      '</html>'
+    ].join('\n');
+  }
+
+  function getSrc(id) { return id === 'final' ? buildFinal() : src(id); }
+
+  function wrap(body) {
+    return '<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8">' +
+      '<meta name="viewport" content="width=device-width, initial-scale=1">' +
+      '<link href="' + BS_CSS + '" rel="stylesheet">' +
+      '<link href="' + ICONS + '" rel="stylesheet">' +
+      '<style>' + CSS_CUSTOM + '</style></head><body>' + body +
+      '<script src="' + BS_JS + '">' + CLOSE +
+      '<script>document.addEventListener("submit",function(e){e.preventDefault()});' +
+      'document.addEventListener("click",function(e){var a=e.target.closest("a");' +
+      'if(a&&a.getAttribute("href")==="#"){e.preventDefault()}});' + CLOSE +
+      '</body></html>';
+  }
+
+  function copyText(text, btn) {
+    function done() { var o = btn.textContent; btn.textContent = 'تم النسخ!'; setTimeout(function () { btn.textContent = o; }, 1400); }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, function () { fallback(); });
+    } else { fallback(); }
+    function fallback() {
+      var ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta);
+      ta.select(); try { document.execCommand('copy'); done(); } catch (e) {} ta.remove();
+    }
+  }
+
+  // كتل الكود الثابتة (التصحيحات والمقتطفات)
+  document.querySelectorAll('script[data-kind="code"]').forEach(function (s) {
+    var text = unesc(s.textContent).replace(/^\s*\n/, '').replace(/\s+$/, '');
+    var box = document.createElement('div'); box.className = 'codebox';
+    var pre = document.createElement('pre'); pre.className = 'code';
+    var code = document.createElement('code'); code.textContent = text;
+    pre.appendChild(code); box.appendChild(pre);
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'copy'; b.textContent = 'نسخ';
+    b.addEventListener('click', function () { copyText(text, b); });
+    box.appendChild(b);
+    s.after(box);
+  });
+
+  // الأمثلة الحيّة (المحرر + النتيجة)
+  var finalTa = null;
+  document.querySelectorAll('.demo').forEach(function (d) {
+    var id = d.dataset.src, full = d.dataset.mode === 'full', h = d.dataset.h || '360';
+    d.innerHTML =
+      '<div class="pane"><div class="bar">الكود (عدّله!)<span>' +
+      '<button type="button" class="btn-mini" data-a="reset">إعادة تعيين</button>' +
+      '<button type="button" class="btn-mini" data-a="copy">نسخ</button></span></div>' +
+      '<textarea spellcheck="false" dir="ltr" aria-label="الكود القابل للتعديل"></textarea></div>' +
+      '<div class="pane"><div class="bar">النتيجة<span>' +
+      '<button type="button" class="btn-mini" data-w="100%">الحاسوب</button>' +
+      '<button type="button" class="btn-mini" data-w="375px">الهاتف</button></span></div>' +
+      '<div class="framewrap"><iframe title="النتيجة" style="height:' + h + 'px"></iframe></div></div>';
+    var ta = d.querySelector('textarea'), fr = d.querySelector('iframe');
+    ta.style.height = h + 'px';
+    var original = getSrc(id);
+    ta.value = original;
+    function render() { fr.srcdoc = full ? ta.value : wrap(ta.value); }
+    var t; ta.addEventListener('input', function () { clearTimeout(t); t = setTimeout(render, 300); });
+    d.querySelector('[data-a="reset"]').addEventListener('click', function () { ta.value = original; render(); });
+    d.querySelector('[data-a="copy"]').addEventListener('click', function (e) { copyText(ta.value, e.currentTarget); });
+    d.querySelectorAll('[data-w]').forEach(function (b) {
+      b.addEventListener('click', function () { fr.style.width = b.dataset.w; });
+    });
+    render();
+    if (id === 'final') finalTa = ta;
+  });
+
+  // تحميل الملف النهائي
+  document.getElementById('dl').addEventListener('click', function () {
+    var blob = new Blob([finalTa.value], { type: 'text/html;charset=utf-8' });
+    var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'index.html';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+  });
+})();
+</script>
+</body>
+</html>
